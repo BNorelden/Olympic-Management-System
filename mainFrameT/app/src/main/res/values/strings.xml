@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">mainFrameT</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="check_events">Check Events</string>
+    <string name="athlete_employee_login">Athlete/Employee Login</string>
+    <string name="this_is_where_you_login">This is where you Login</string>
+    <string name="on_going_events">On Going Events</string>
+</resources>
