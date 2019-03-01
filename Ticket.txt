@@ -7,10 +7,8 @@ class Ticket:
 			setId(ticketId)
 			setEvent(event)
 
-		void setId(int ticketId):
+		void set(int ticketId, Event event):
 			this.ticketId = ticketId
-
-		void setEvent(Event event):
 			this.event = event
 
 		void displayTicket():
