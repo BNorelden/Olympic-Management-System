@@ -5,7 +5,7 @@ class Event:
 		char type
 		String venue
 		int[] date = new int[3]
-		int[] time = new int[2]
+		int[] time = new int[4]
 		float price
 		int numSeats
 		ArrayList participant = new ArrayList<User>()
@@ -55,13 +55,15 @@ class Event:
 			date[1] = day
 			date[2] = year
 
-		void setTime(int hour, int minute) throws InputException:
-			if(hour < 0 || hour > 23):
+		void setTime(int startHour, int startMinute, int endHour, int endMinute) throws InputException:
+			if((startHour < 0 || startHour > 23) || (endHour < 0 || endHour > 23)):
 				throw new InputException("Hour must be between 0 and 23!")
-			else if(minute < 0 || minute > 59)
+			else if((startMinute < 0 || startMinute > 59) || (endMinute < 0 || endMinute > 59))
 				throw new InputException("Minute must be between 0 and 59!")
-			time[0] = hour
-			time[1] = minute
+			time[0] = startHour
+			time[1] = startMinute
+			time[2] = endHour
+			time[3] = endMinute
 
 		void setPrice(float price) throws InputException:
 			if(price < 0):
@@ -84,19 +86,11 @@ class Event:
 				return false
 			return true
 
-		void addParticipant(User u) throws InputException:
-			if(isAvailable()):
+		void addParticipant(Athlete a):
 				participant.add(u)
-				decSeats()
-			else:
-				throw new InputException("No seats are available right now! Try again later.")
 
-		void dropParticipant(User u) throws InputException:
-			if(participant.contains(u)):
+		void dropParticipant(Athlete a):
 				participant.remove(u)
-				incSeats()
-			else:
-				throw new InputException(u.getName() + " is not a participant!")
 
 		String getName():
 			return name

@@ -1,0 +1,37 @@
+class Athlete extends User:
+	private:
+		String country
+		char gender
+		ArrayList sport
+		AthleteSchedule schedule
+	public:
+		void setCountry(String country) throws InputException:
+			for(int i = 0; i < country.length(); i++):
+				if((country.charAt(i) < 'A' || country.charAt(i) > 'z') && country.charAt(i) != ' '):
+					throw new InputException("Country names do not contain numbers or special characters!")
+			this.country = country
+
+		void setGender(char gender) throws InputException:
+			if(gender != 'M' && gender != 'm' && gender != 'F' && gender != f)
+				throw new InputException("Invalid option for gender!")
+			this.gender = gender
+
+		void setSports(ArrayList sport):
+			this.sport = sport
+
+		String getCountry():
+			return country
+
+		char getGender():
+			return gender
+
+		ArrayList getSports():
+			return sport
+
+		AthleteSchedule checkSchedule():
+			return schedule
+
+		void scheduleAutograph(String name, String venue, int[] date, int[] time):
+			Event e = new Event(name, null, 'S', venue, date[0], date[1], date[2], time[0], time[1], 0, 30)
+
+			

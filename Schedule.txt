@@ -1,5 +1,5 @@
 class Schedule:
-	private:
+	protected:
 		ArrayList event = new ArrayList<Event>()
 	public:
 		void addEvent(Event e) throws InputException:
