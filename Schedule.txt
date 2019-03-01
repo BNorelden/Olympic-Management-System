@@ -68,3 +68,16 @@ class Schedule:
 					result.add(event.get(i))
 
 			return result
+
+class EventSchedule extends Schedule:
+	public:
+		Boolean isConflict():
+			/*Check for time conflicts*/
+
+		void notifySecurity():
+			/*Inform securrity of award ceremony scheduled*/
+
+		void informUsers(String newVenue, int[] newDate, int[] newTime):
+			/*Invoke activity that informs all users of event change*/
+
+class AthleteSchedule extends Schedule

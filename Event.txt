@@ -124,6 +124,3 @@ class Event:
 
 		ArrayList getParticipants():
 			return participant
-
-		void informUsers(String newVenue, int[] newDate, int[] newTime):
-			/*Invoke activity that informs all users of event change*/
