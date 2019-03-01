@@ -7,33 +7,36 @@ class User:
 		static int ticCount = 0
 		ArrayList ticket
 	public:
-		User(String userId, String name, String phoneNum, int age, String email):
-			setName(name)
-			setPhoneNum(phoneNum)
-			setAge(age)
-			setEmail(email)
+		User(String userId, String name, String phoneNum, int age, String email) throws InputException:
+			try:
+				setName(name)
+				setPhoneNum(phoneNum)
+				setAge(age)
+				setEmail(email)
+			catch(InputException e):
+				throw e
 
-		void setName(String name) throws inputException:
+		void setName(String name) throws InputException:
 			for(int i = 0; i < name.length(); i++):
 				if((name.charAt(i) < 'A' || name.charAt(i) > 'z') && name.charAt(i) != ' '):
-					throw new inputException("Names are not allowed to contain numbers or special characters!")
+					throw new InputException("Names are not allowed to contain numbers or special characters!")
 			this.name = name
 
-		void setPhoneNum(String phoneNum) throws inputException:
+		void setPhoneNum(String phoneNum) throws InputException:
 			if(phoneNum.length() != 10):
-				throw new inputException("Phone numbers must contain 10 digits!")
+				throw new InputException("Phone numbers must contain 10 digits!")
 			this.phoneNum = phoneNum
 
-		void setAge(int age) throws inputException:
+		void setAge(int age) throws InputException:
 			if(age <= 0):
-				throw new inputException("Age must be greater than zero!")
+				throw new InputException("Age must be greater than zero!")
 			this.age = age
 
-		void setEmail(String email) throws inputException:
+		void setEmail(String email) throws InputException:
 			if(email.substring(email.length() - 4) != ".com" || email.substring(email.length() - 4) != ".org" || 
 			email.substring(email.length() - 4) != ".net" || email.substring(email.length() - 4) != ".edu" || 
 			email.indexOf('@') == -1):
-				throw new inputException("Invalid email format!")
+				throw new InputException("Invalid email format!")
 			this.email = email
 
 		String getName():

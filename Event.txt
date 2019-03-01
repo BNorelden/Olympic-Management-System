@@ -1,0 +1,129 @@
+class Event:
+	private:
+		String name
+		String category
+		char type
+		String venue
+		int[] date = new int[3]
+		int[] time = new int[2]
+		float price
+		int numSeats
+		ArrayList participant = new ArrayList<User>()
+	public:	
+		Event(String name, String category, char type, String venue, int month, int day, int year, int hour, int minute, 
+		float price, int seats) throws Input Exception:
+			try:
+				setName(name)
+				setCat(category)
+				setType(type)
+				setVenue(venue)
+				setDate(month, day, year)
+				setTime(hour, minute)
+				setPrice(price)
+				setSeats(seats)
+			catch(InputException e):
+				throw e
+
+		void setName(String name) throws InputException:
+			for(int i = 0; i < name.length(); i++):
+				if(name.charAt(i) != ' ' && (name.charAt(i) < '0' || (name.charAt(i) > '9' && name.charAt(i) < 'A') || name.charAt(i) > 'z')):
+					throw new InputException("Event names are not allowed to contain special characters!")
+			this.name = name
+
+		void setCat(String category) throws InputException:
+			for(int i = 0; i < category.length(); i++):
+				if((category.charAt(i) < 'A' || category.charAt(i) > 'z') && category.charAt(i) != ' '):
+					throw new InputException("Categories are not allowed to contain numbers or special characters!")
+			this.category = category
+
+		void setType(char type) throws InputException:
+			if(type != 'E' && type != 'e' && type != 'C' && type != 'c' && type != 'S' && type != 's'):
+				throw new InputException("Type must be either: competition event (E), award ceremony (C), or autograph session (S)!")
+			this.type = type
+
+		void setVenue(String venue):
+			this.venue = venue
+
+		void setDate(int month, int day, int year) throws InputException:
+			if(month <= 0 || month > 12):
+				throw new InputException("Month must be between 1 and 12!")
+			else if(day <= 0 || day > 31):
+				throw new InputException("Day must be between 0 and 31!")
+			else if(year < 2005 || year > 2020):
+				throw new InputException("Invalid Year!")
+			date[0] = month
+			date[1] = day
+			date[2] = year
+
+		void setTime(int hour, int minute) throws InputException:
+			if(hour < 0 || hour > 23):
+				throw new InputException("Hour must be between 0 and 23!")
+			else if(minute < 0 || minute > 59)
+				throw new InputException("Minute must be between 0 and 59!")
+			time[0] = hour
+			time[1] = minute
+
+		void setPrice(float price) throws InputException:
+			if(price < 0):
+				throw new InputException("Price cannot be a negative value!")
+			this.price = price
+
+		void setSeats(int seats) throws InputException:
+			if(seats < 0):
+				throw new InputException("Number of seats cannot be negative!")
+			this.numSeats = seats
+		
+		void incSeats():
+			numSeats++
+
+		void decSeats():
+			numSeats--
+
+		Boolean isAvailable():
+			if(numSeats == 0):
+				return false
+			return true
+
+		void addParticipant(User u) throws InputException:
+			if(isAvailable()):
+				participant.add(u)
+				decSeats()
+			else:
+				throw new InputException("No seats are available right now! Try again later.")
+
+		void dropParticipant(User u) throws InputException:
+			if(participant.contains(u)):
+				participant.remove(u)
+				incSeats()
+			else:
+				throw new InputException(u.getName() + " is not a participant!")
+
+		String getName():
+			return name
+
+		String getCat():
+			return category
+
+		char getType():
+			return type
+
+		String getVenue():
+			return venue
+
+		int[] getDate():
+			return date
+
+		int[] getTime():
+			return time
+
+		float getPrice():
+			return price
+
+		int getSeats():
+			return numSeats
+
+		ArrayList getParticipants():
+			return participant
+
+		void informUsers(String newVenue, int[] newDate, int[] newTime):
+			/*Inform all users of event change*/
