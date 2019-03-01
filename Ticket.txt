@@ -1,0 +1,19 @@
+class Ticket:
+	private:
+		int ticketId
+		Event event
+	public:
+		Ticket(int ticketId, Event event):
+			setId(ticketId)
+			setEvent(event)
+		
+		~Ticket():
+			event.incSeats
+
+		void set(int ticketId, Event event):
+			this.ticketId = ticketId
+			this.event = event
+			event.decSeats
+
+		void displayTicket():
+			/*Invoke activity to pop up ticket to user*/

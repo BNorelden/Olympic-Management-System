@@ -1,0 +1,83 @@
+class Schedule:
+	protected:
+		ArrayList event = new ArrayList<Event>()
+	public:
+		void addEvent(Event e) throws InputException:
+			if(!event.contains(e)):
+				event.add(e)
+			else:
+				throw new InputException("Event already exists in schedule!")
+
+		void dropEvent(Event e) throws InputException:
+			if(event.contains(e)):
+				event.remove(e)
+			else:
+				throw new InputException("Event does not exist in this schedule!")
+
+		Event searchName(String name):
+			Event result = null
+
+			for(int i = 0; i < event.size(); i++):
+				if((event.get(i)).getName() == name):
+					result = event.get(i)
+					break
+			
+			return result
+
+		ArrayList searchCat(String category):
+			ArrayList result = new ArrayList<Event>()
+
+			for(int i = 0; i < event.size(); i++):
+				if((event.get(i)).getCat() == category):
+					result.add(event.get(i))
+
+			return result
+
+		ArrayList searchType(char type):
+			ArrayList result = new ArrayList<Event>()
+
+			for(int i = 0; i < event.size(); i++):
+				if((event.get(i)).getType() == type):
+					result.add(event.get(i))
+
+			return result
+
+		ArrayList searchVen(String venue):
+			ArrayList result = new ArrayList<Event>()
+
+			for(int i = 0; i < event.size(); i++):
+				if((event.get(i)).getVenue() == venue):
+					result.add(event.get(i))
+
+			return result
+
+		ArrayList searchDate(int[] date):
+			ArrayList result = new ArrayList<Event>()
+
+			for(int i = 0; i < event.size(); i++):
+				if(Arrays.equals((event.get(i)).getDate(), date):
+					result.add(event.get(i))
+
+			return result
+
+		ArrayList searchTime(int[] time):
+			ArrayList result = new ArrayList<Event>()
+
+			for(int i = 0; i < event.size(); i++):
+				if(Arrays.equals((event.get(i)).getTime(), time):
+					result.add(event.get(i))
+
+			return result
+
+class EventSchedule extends Schedule:
+	public:
+		Boolean isConflict():
+			/*Check for time conflicts*/
+
+		void notifySecurity():
+			/*Inform securrity of award ceremony scheduled*/
+
+		void informUsers(String newVenue, int[] newDate, int[] newTime):
+			/*Invoke activity that informs all users of event change*/
+
+class AthleteSchedule extends Schedule
