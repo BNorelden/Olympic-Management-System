@@ -126,4 +126,4 @@ class Event:
 			return participant
 
 		void informUsers(String newVenue, int[] newDate, int[] newTime):
-			/*Inform all users of event change*/
+			/*Invoke activity that informs all users of event change*/
