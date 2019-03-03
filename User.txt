@@ -7,24 +7,26 @@ class User:
 		static int ticCount = 0
 		ArrayList ticket
 	public:
-		User(String userId, String name, String phoneNum, int age, String email) throws InputException:
-			try:
-				setName(name)
-				setPhoneNum(phoneNum)
-				setAge(age)
-				setEmail(email)
-			catch(InputException e):
-				throw e
+		User(String name, String phoneNum, int age, String email) throws InputException:
+			setName(name)
+			setPhoneNum(phoneNum)
+			setAge(age)
+			setEmail(email)
 
 		void setName(String name) throws InputException:
 			for(int i = 0; i < name.length(); i++):
-				if((name.charAt(i) < 'A' || name.charAt(i) > 'z') && name.charAt(i) != ' '):
+				char character = name.charAt(i)
+				if(character != ' ' && (character < 'A' || (character > 'Z' && character < 'a') || character > 'z')):
 					throw new InputException("Names are not allowed to contain numbers or special characters!")
 			this.name = name
 
 		void setPhoneNum(String phoneNum) throws InputException:
 			if(phoneNum.length() != 10):
 				throw new InputException("Phone numbers must contain 10 digits!")
+			for(int i = 0; i < phoneNum.length(); i++):
+				char digit = phoneNum.charAt(i)
+				if(digit < '0' || digit > '9'):
+					throw new InputException("Invalid phone number!")
 			this.phoneNum = phoneNum
 
 		void setAge(int age) throws InputException:
@@ -33,9 +35,8 @@ class User:
 			this.age = age
 
 		void setEmail(String email) throws InputException:
-			if(email.substring(email.length() - 4) != ".com" || email.substring(email.length() - 4) != ".org" || 
-			email.substring(email.length() - 4) != ".net" || email.substring(email.length() - 4) != ".edu" || 
-			email.indexOf('@') == -1):
+			if(!email.matches("(.*)@(.*).com") && !email.matches("(.*)@(.*).net") && !email.matches("(.*)@(.*).org") &&
+			!email.matches("(.*)@(.*).edu") && !email.matches("(.*)@(.*).gov")):
 				throw new InputException("Invalid email format!")
 			this.email = email
 
@@ -54,10 +55,14 @@ class User:
 		ArrayList getTickets():
 			return ticket
 
-		void buyTicket(Event e):
+		void buyTicket(Event e) throws EventUnavailableException:
+			if(!e.isAvailable()):
+				throw new EventUnavailableException(e)
 			/*Payment activity*/
-			Ticket tic = new Ticket()
 			ticCount++
-			tic.set(ticCount, e)
+			Ticket tic = new Ticket(ticCount, e)
 			ticket.add(tic)
 			ticket.get(ticket.size() - 1).displayTicket()
+		
+		void cancelTicket(Ticket t):
+			ticket.remove(t)

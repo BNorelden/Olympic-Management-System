@@ -4,8 +4,7 @@ class Ticket:
 		Event event
 	public:
 		Ticket(int ticketId, Event event):
-			setId(ticketId)
-			setEvent(event)
+			set(ticketId, event)
 		
 		~Ticket():
 			event.incSeats
@@ -13,7 +12,7 @@ class Ticket:
 		void set(int ticketId, Event event):
 			this.ticketId = ticketId
 			this.event = event
-			event.decSeats
+			this.event.decSeats
 
 		void displayTicket():
 			/*Invoke activity to pop up ticket to user*/
