@@ -1,25 +1,30 @@
 class Schedule:
 	protected:
-		ArrayList event = new ArrayList<Event>()
+		ArrayList event
 	public:
-		void addEvent(Event e) throws InputException:
-			if(!event.contains(e)):
-				event.add(e)
-			else:
+		Schedule():
+			event = new ArrayList<Event>()
+
+		void addEvent(Event e) throws InputException, TimeConflictException:
+			if(event.contains(e)):
 				throw new InputException("Event already exists in schedule!")
+			Event conflicted = conflict(e)
+			if(conflicted != null):
+				throw new TimeConflictException(e, conflicted)
+			event.add(e)
 
 		void dropEvent(Event e) throws InputException:
-			if(event.contains(e)):
-				event.remove(e)
-			else:
+			if(!event.contains(e)):
 				throw new InputException("Event does not exist in this schedule!")
+			event.remove(e)
 
 		Event searchName(String name):
 			Event result = null
 
 			for(int i = 0; i < event.size(); i++):
-				if((event.get(i)).getName() == name):
-					result = event.get(i)
+				Event e = event.get(i)
+				if(e.getName() == name):
+					result = e
 					break
 			
 			return result
@@ -28,8 +33,9 @@ class Schedule:
 			ArrayList result = new ArrayList<Event>()
 
 			for(int i = 0; i < event.size(); i++):
-				if((event.get(i)).getCat() == category):
-					result.add(event.get(i))
+				Event e = event.get(i)
+				if(e.getCat() == category):
+					result.add(e)
 
 			return result
 
@@ -37,8 +43,9 @@ class Schedule:
 			ArrayList result = new ArrayList<Event>()
 
 			for(int i = 0; i < event.size(); i++):
-				if((event.get(i)).getType() == type):
-					result.add(event.get(i))
+				Event e = event.get(i)
+				if(e.getType() == type):
+					result.add(e)
 
 			return result
 
@@ -46,8 +53,9 @@ class Schedule:
 			ArrayList result = new ArrayList<Event>()
 
 			for(int i = 0; i < event.size(); i++):
-				if((event.get(i)).getVenue() == venue):
-					result.add(event.get(i))
+				Event e = event.get(i)
+				if(e.getVenue() == venue):
+					result.add(e)
 
 			return result
 
@@ -55,8 +63,9 @@ class Schedule:
 			ArrayList result = new ArrayList<Event>()
 
 			for(int i = 0; i < event.size(); i++):
-				if(Arrays.equals((event.get(i)).getDate(), date):
-					result.add(event.get(i))
+				Event e = event.get(i)
+				if(Arrays.equals(e.getDate(), date):
+					result.add(e)
 
 			return result
 
@@ -64,20 +73,46 @@ class Schedule:
 			ArrayList result = new ArrayList<Event>()
 
 			for(int i = 0; i < event.size(); i++):
-				if(Arrays.equals((event.get(i)).getTime(), time):
-					result.add(event.get(i))
+				Event e = event.get(i)
+				if(Arrays.equals(e.getTime(), time):
+					result.add(e)
 
 			return result
 
+		Event conflict(Event first):
+			int hoursApart = 1;
+			int[] firstTime = first.getTime()
+			int firstStartHour = firstTime[0], firstStartMinute = firstTime[1]
+			int firstEndHour = firstTime[2], firstEndMinute = firstTime[3]
+
+			for(int i = 0; i < event.size(); i++):
+				Event second = event.get(i)
+				if(first.getDate() == second.getDate()):
+					int[] secondTime = second.getTime()
+					int secondStartHour = secondTime[0], secondStartMinute = secondTime[1]
+					int secondEndHour = secondTime[2], secondEndMinute = secondTime[3]
+					if(firstEndHour > secondStartHour - hoursApart && firstStartHour - hoursApart < secondEndHour):
+						return second
+					else if(firstEndHour == secondStartHour - hoursApart):
+						if(firstEndMinute > secondStartMinute):
+							return second
+					else if(secondEndHour == firstStartHour - hoursApart):
+						if(secondEndMinute > firstStartMinute):
+							return second
+			return null
+
 class EventSchedule extends Schedule:
 	public:
-		Boolean isConflict():
-			/*Check for time conflicts*/
+		EventSchedule():
+			super()		
 
-		void notifySecurity():
-			/*Inform securrity of award ceremony scheduled*/
+		void notifySecurity(Event ceremony):
+			/*Inform security of award ceremony scheduled*/
 
-		void informUsers(String newVenue, int[] newDate, int[] newTime):
+		void informUsers(String msg):
 			/*Invoke activity that informs all users of event change*/
 
-class AthleteSchedule extends Schedule
+class AthleteSchedule extends Schedule:
+	public:
+		AthleteSchedule():
+			super()
