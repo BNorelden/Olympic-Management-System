@@ -50,7 +50,7 @@ class Employee extends User
       }
       
 		public void update(Event e, String venue, int month, int day, int year, int startHour, int startMinute,
-		int endHour, int endMinute);
+		int endHour, int endMinute)
       {
 			e.setVenue(venue);
 			e.setDate(month, day, year);
