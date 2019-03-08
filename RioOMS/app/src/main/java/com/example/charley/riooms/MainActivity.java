@@ -15,10 +15,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private DocumentReference userRef;
+    private DocumentReference empRef;
+    private DocumentReference athRef;
     EditText emailField, passwordField;
     Button loginBtn, signupBtn, guestBtn;
     String email, password;
@@ -50,7 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         email = emailField.getText().toString().trim();
         password = passwordField.getText().toString().trim();
 
+
         //check input, email, password not empty, pass longer than 6 ...
+        //todo toast message greeting login user
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
@@ -60,7 +69,103 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             //startActivity(new Intent(getApplicationContext(), homePage.class));
                             //todo
-                            startActivity(new Intent(getApplicationContext(), userView.class));
+                           // startActivity(new Intent(getApplicationContext(), userView.class));
+
+                            //hold value of current user to use if statements to see who log in
+                            //and redirect them to the appropriate activity
+                            //String currUser = mAuth.getCurrentUser().getUid();
+                            //todo testing way to show different activity to different users
+
+                            String currUser = mAuth.getCurrentUser().getUid();
+
+                            db = FirebaseFirestore.getInstance();
+
+                            userRef = db.collection("user").document(currUser);
+                            empRef = db.collection("employee").document(currUser);
+                            athRef = db.collection("athlete").document(currUser);
+
+                            userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                    if(task.isSuccessful()){
+
+                                        DocumentSnapshot document = task.getResult();
+
+                                        if(document.exists()){
+
+                                            startActivity(new Intent(getApplicationContext(), userView.class));
+
+                                        }
+
+                                        else{//todo error message
+                                             Log.d("Doc error", "Error in finding doc");
+                                        }
+
+                                    }
+
+                                    else{//todo error message
+                                        Log.d("Doc error", "Error in oncomplete doc listener");
+                                    }
+
+                                }
+                            });
+
+                            empRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                    if(task.isSuccessful()){
+
+                                        DocumentSnapshot document = task.getResult();
+
+                                        if(document.exists()){
+
+                                            startActivity(new Intent(getApplicationContext(), employeeView.class));
+
+                                        }
+
+                                        else{//todo error message
+                                            Log.d("Doc error", "Error in finding doc");
+                                        }
+
+                                    }
+
+                                    else{//todo error message
+                                        Log.d("Doc error", "Error in oncomplete doc listener");
+                                    }
+
+                                }
+                            });
+
+                            //athlete check
+                            athRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                    if(task.isSuccessful()){
+
+                                        DocumentSnapshot document = task.getResult();
+
+                                        if(document.exists()){
+
+                                            startActivity(new Intent(getApplicationContext(), athleteView.class));
+
+                                        }
+
+                                        else{//todo error message
+                                            Log.d("Doc error", "Error in finding doc");
+                                        }
+
+                                    }
+
+                                    else{//todo error message
+                                        Log.d("Doc error", "Error in oncomplete doc listener");
+                                    }
+
+                                }
+                            });
+
 
                         }
 
@@ -84,9 +189,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if(task.isSuccessful()){
 
-                    startActivity(new Intent(getApplicationContext(), homePage.class));
+                    //startActivity(new Intent(getApplicationContext(), homePage.class));
                     //todo change to the new one with tabs once signout works
-                    //startActivity(new Intent(getApplicationContext(), userView.class));
+                    startActivity(new Intent(getApplicationContext(), userView.class));
 
                 }
 

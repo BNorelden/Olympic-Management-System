@@ -11,9 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".athleteView"
+            android:label="@string/title_activity_athlete_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".employeeView"
+            android:label="@string/title_activity_employee_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".userView"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TicketDisplay" />
         <activity android:name=".signUp" />
         <activity android:name=".homePage" />
