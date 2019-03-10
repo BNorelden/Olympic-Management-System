@@ -59,46 +59,41 @@ class Schedule:
 
 			return result
 
-		ArrayList searchDate(int[] date):
+		ArrayList searchDate(String date):
 			ArrayList result = new ArrayList<Event>()
 
 			for(int i = 0; i < event.size(); i++):
 				Event e = event.get(i)
-				if(Arrays.equals(e.getDate(), date):
+				ZonedDateTime dateTime = e.getStartDateTime()
+				String thisDate = dateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy"))
+				if(thisDate == date):
 					result.add(e)
 
 			return result
 
-		ArrayList searchTime(int[] time):
+		ArrayList searchTime(String time):
 			ArrayList result = new ArrayList<Event>()
 
 			for(int i = 0; i < event.size(); i++):
 				Event e = event.get(i)
-				if(Arrays.equals(e.getTime(), time):
+				ZonedDateTime dateTime = e.getStartDateTime()
+				String thisTime = dateTime.format(DateTimeFormatter.ofPattern("h:mm z"))
+				if(thisTime == time):
 					result.add(e)
 
 			return result
 
 		Event conflict(Event first):
-			int hoursApart = 1;
-			int[] firstTime = first.getTime()
-			int firstStartHour = firstTime[0], firstStartMinute = firstTime[1]
-			int firstEndHour = firstTime[2], firstEndMinute = firstTime[3]
-
+			Event second
+			int hoursApart = 1
+			String firstStartTime = first.getStartDateTime().minusHours(hoursApart).format("d/M/yyyy h:mm")
+			String firstEndTime = first.getEndDateTime().plusHours(hoursApart).format("d/M/yyyy h:mm")
 			for(int i = 0; i < event.size(); i++):
-				Event second = event.get(i)
-				if(first.getDate() == second.getDate()):
-					int[] secondTime = second.getTime()
-					int secondStartHour = secondTime[0], secondStartMinute = secondTime[1]
-					int secondEndHour = secondTime[2], secondEndMinute = secondTime[3]
-					if(firstEndHour > secondStartHour - hoursApart && firstStartHour - hoursApart < secondEndHour):
-						return second
-					else if(firstEndHour == secondStartHour - hoursApart):
-						if(firstEndMinute > secondStartMinute):
-							return second
-					else if(secondEndHour == firstStartHour - hoursApart):
-						if(secondEndMinute > firstStartMinute):
-							return second
+				second = event.get(i)
+				String secondStartTime = second.getStartDateTime().format("d/M/yyyy h:mm")
+				String secondEndTime = second.getEndDateTime().format("d/M/yyyy h:mm")
+				if(firstEndTime.compareTo(secondStartTime) > 0 && firstStartTime.compareTo(secondEndTime) < 0):
+					return second
 			return null
 
 class EventSchedule extends Schedule:

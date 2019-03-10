@@ -62,7 +62,7 @@ class User:
 			ticCount++
 			Ticket tic = new Ticket(ticCount, e)
 			ticket.add(tic)
-			ticket.get(ticket.size() - 1).displayTicket()
+			tic.displayTicket()
 		
 		void cancelTicket(Ticket t):
 			ticket.remove(t)

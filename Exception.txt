@@ -34,7 +34,7 @@ class EventUnavailableException extends Exception:
 	public:
 		EventUnavailableException(Event e):
 			unavailable = e
-			msg = "The event, " + unavailable + " is out of seats! Please try again later."
+			msg = "The event, " + unavailable + " is sold out! Please try again later."
 
 		Event getUnavailable():
 			return unavailable

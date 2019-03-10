@@ -12,7 +12,7 @@ class Ticket:
 		void set(int ticketId, Event event):
 			this.ticketId = ticketId
 			this.event = event
-			this.event.decSeats
+			event.decSeats
 
 		void displayTicket():
 			/*Invoke activity to pop up ticket to user*/
