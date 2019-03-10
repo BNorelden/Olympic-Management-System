@@ -39,39 +39,49 @@ class Athlete extends User:
 		AthleteSchedule checkSchedule():
 			return schedule
 
-		void scheduleAutograph(String name, String venue, int month, int day, int year, int startHour, int startMinute,
-		int endHour, int endMinute, int seats) throws TimeConflictException:
-			Event e = new Event(name, null, 'S', venue, month, day, year, startHour, startMinute, endHour, endMinute, 0, seats)
+		void scheduleAutograph(String name, String venue, int startDay, int startMonth, int startHr, int startMin,
+		int endDay, int endMonth, int endHr, int endMin, int year, String zone, int seats) throws InputException, TimeConflictException:
+			Event e = new Event(name, null, 'S', venue, startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, year, zone, 0, seats)
 			e.addParticipant(this)
 			bookEvent(e)
 			eventSchedule.addEvent(e)
 			eventSchedule.informUsers(e.getName() + " by " + this.name + " was just scheduled! Check it out!")
 
-		void cancelAutograph(Event e):
+		void cancelAutograph(Event e) throws InputException:
 			unbookEvent(e)
 			eventSchedule.dropEvent(e)
 			eventSchedule.informUsers(e.getName() + " by " + this.name + " was cancelled. We apologize for any inconvenience.")
 
-		void updateAutograph(Event e, String venue, int month, int day, int year, int startHour, int startMinute,
-		int endHour, int endMinute):
+		void updateAutograph(Event e, String venue, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone):
 			e.setVenue(venue)
-			e.setDate(month, day, year)
-			e.setTime(startHour, startMinute, endHour, endMinute)
-			eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held at " + venue + " on " + month + "/" + day + "/" + year + " from " + startHour + ":" + startMinute + " -- " + endHour + ":" + endMinute + ".")
+			e.setStartDate(startDay, startMonth, year)
+			e.setStartTime(startHr, startMin, zone)
+			e.setEndDate(endDay, endMonth, year)
+			e.setEndTime(endHr, endMin, zone)
+			String startDateTime = e.getStartDateTime().format("d/M/yyyy h:mm z")
+			String endDateTime = e.getEndDateTime().format("d/M/yyyy h:mm z")
+			eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held at " + venue + " from " + startDateTime + " -- " + endDateTime)
 
-		void updateAutograph(Event e, int month, int day, int year, int startHour, int startMinute, int endHour, int endMinute):
-			e.setDate(month, day, year)
-			e.setTime(startHour, startMinute, endHour, endMinute)
-			eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held on " + month + "/" + day + "/" + year + " from " + startHour + ":" + startMinute + " -- " + endHour + ":" + endMinute + ".")
+		void updateAutograph(Event e, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone):
+			e.setStartDate(startDay, startMonth, year)
+			e.setStartTime(startHr, startMin, zone)
+			e.setEndDate(endDay, endMonth, year)
+			e.setEndTime(endHr, endMin, zone)
+			String startDateTime = e.getStartDateTime().format("d/M/yyyy h:mm z")
+			String endDateTime = e.getEndDateTime().format("d/M/yyyy h:mm z")
+			eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held from " + startDateTime + " -- " + endDateTime)
 
-		void updateAutograph(Event e, int startHour, int startMinute, int endHour, int endMinute):
-			e.setTime(startHour, startMinute, endHour, endMinute)
-			eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held from " + startHour + ":" + startMinute + " -- " + endHour + ":" + endMinute + ".")
+		void updateAutograph(Event e, int startHr, int startMin, int endHr, int endMin, String zone):
+			e.setStartTime(startHr, startMin, zone)
+			e.setEndTime(endHr, endMin, zone)
+			String startTime = e.getStartDateTime().format("h:mm z")
+			String endTime = e.getEndDateTime().format("h:mm z")
+			eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held from " + startTime + " -- " + endTime + ".")
 
-		void bookEvent(Event e) throws TimeConflictException:
+		void bookEvent(Event e) throws InputException, TimeConflictException:
 			schedule.addEvent(e)
 
-		void unbookEvent(Event e):
+		void unbookEvent(Event e) throws InputException:
 			schedule.dropEvent(e)
 
 		void requestFreeTicket(Event e) throws EventUnavailableException:
@@ -80,4 +90,4 @@ class Athlete extends User:
 			ticCount++
 			Ticket tic = new Ticket(ticCount, e)
 			ticket.add(tic)
-			ticket.get(ticket.size() - 1).displayTicket()
+			tic.displayTicket()
