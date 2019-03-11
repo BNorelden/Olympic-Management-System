@@ -19,8 +19,8 @@ class Employee extends User:
 				a.bookEvent(e)
 			if(type == 'C'):
 				e.notifySecurity(e)
-			String startTime = e.getStartDateTime().format("d/M/yyyy h:mm z")
-			String endTime = e.getEndDateTime().format("d/M/yyyy h:mm z")
+			String startTime = e.getStartDateTime().format(DateTimeFormatter.ofPattern("d/M/yyyy h:mm z"))
+			String endTime = e.getEndDateTime().format(DateTimeFormatter.ofPattern("d/M/yyyy h:mm z"))
 			eventSchedule.informUsers(name + " was just scheduled! It is being held at " + venue + " from " + startTime " -- " + endTime + ". Check it out!")
 
 		void cancelEvent(Event e) throws InputException:
@@ -28,7 +28,7 @@ class Employee extends User:
 				Athlete athlete = e.participant.get(i)
 				athlete.unbookEvent(e)
 			eventSchedule.dropEvent(e)
-			String date = e.getStartDateTime().format("d/M/yyyy")
+			String date = e.getStartDateTime().format(DateTimeFormatter.ofPattern("d/M/yyyy"))
 			eventSchedule.informUsers(e.getName() + " held on " + date + " was cancelled. We apologize for any inconvenience.)
 
 		void update(Event e, String venue, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone):
@@ -37,8 +37,8 @@ class Employee extends User:
 			e.setStartTime(startHr, startMin, zone)
 			e.setEndDate(endDay, endMonth, year)
 			e.setEndTime(endHr, endMin, zone)
-			String startDateTime = e.getStartDateTime().format("d/M/yyyy h:mm z")
-			String endDateTime = e.getEndDateTime().format("d/M/yyyy h:mm z")
+			String startDateTime = e.getStartDateTime().format(DateTimeFormatter.ofPattern("d/M/yyyy h:mm z"))
+			String endDateTime = e.getEndDateTime().format(DateTimeFormatter.ofPattern("d/M/yyyy h:mm z"))
 			eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held at " + venue + " from " + startDateTime + " -- " + endDateTime)
 
 		void update(Event e, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone):
@@ -46,15 +46,15 @@ class Employee extends User:
 			e.setStartTime(startHr, startMin, zone)
 			e.setEndDate(endDay, endMonth, year)
 			e.setEndTime(endHr, endMin, zone)
-			String startDateTime = e.getStartDateTime().format("d/M/yyyy h:mm z")
-			String endDateTime = e.getEndDateTime().format("d/M/yyyy h:mm z")
+			String startDateTime = e.getStartDateTime().format(DateTimeFormatter.ofPattern("d/M/yyyy h:mm z"))
+			String endDateTime = e.getEndDateTime().format(DateTimeFormatter.ofPattern("d/M/yyyy h:mm z"))
 			eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held from " + startDateTime + " -- " + endDateTime)
 
 		void update(Event e, int startHr, int startMin, int endHr, int endMin, String zone):
 			e.setStartTime(startHr, startMin, zone)
 			e.setEndTime(endHr, endMin, zone)
-			String startTime = e.getStartDateTime().format("h:mm z")
-			String endTime = e.getEndDateTime().format("h:mm z")
+			String startTime = e.getStartDateTime().format(DateTimeFormatter.ofPattern("h:mm z"))
+			String endTime = e.getEndDateTime().format(DateTimeFormatter.ofPattern("h:mm z"))
 			eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held from " + startTime + " -- " + endTime + ".")
 
 		void update(Event e, Athlete old, Athlete new):

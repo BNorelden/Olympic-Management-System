@@ -65,7 +65,7 @@ class Schedule:
 			for(int i = 0; i < event.size(); i++):
 				Event e = event.get(i)
 				ZonedDateTime dateTime = e.getStartDateTime()
-				String thisDate = dateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy"))
+				String thisDate = dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 				if(thisDate == date):
 					result.add(e)
 
@@ -77,7 +77,7 @@ class Schedule:
 			for(int i = 0; i < event.size(); i++):
 				Event e = event.get(i)
 				ZonedDateTime dateTime = e.getStartDateTime()
-				String thisTime = dateTime.format(DateTimeFormatter.ofPattern("h:mm z"))
+				String thisTime = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
 				if(thisTime == time):
 					result.add(e)
 
@@ -86,12 +86,12 @@ class Schedule:
 		Event conflict(Event first):
 			Event second
 			int hoursApart = 1
-			String firstStartTime = first.getStartDateTime().minusHours(hoursApart).format("d/M/yyyy h:mm")
-			String firstEndTime = first.getEndDateTime().plusHours(hoursApart).format("d/M/yyyy h:mm")
+			String firstStartTime = first.getStartDateTime().minusHours(hoursApart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+			String firstEndTime = first.getEndDateTime().plusHours(hoursApart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
 			for(int i = 0; i < event.size(); i++):
 				second = event.get(i)
-				String secondStartTime = second.getStartDateTime().format("d/M/yyyy h:mm")
-				String secondEndTime = second.getEndDateTime().format("d/M/yyyy h:mm")
+				String secondStartTime = second.getStartDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+				String secondEndTime = second.getEndDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
 				if(firstEndTime.compareTo(secondStartTime) > 0 && firstStartTime.compareTo(secondEndTime) < 0):
 					return second
 			return null
