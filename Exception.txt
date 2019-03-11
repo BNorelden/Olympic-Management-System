@@ -16,7 +16,7 @@ class TimeConflictException extends Exception:
 		TimeConflictException(Event conflicting, Event conflicted):
 			this.conflicting = conflicting
 			this.conflicted = conflicted
-			msg = "Date and Times for " + this.conflicting + " is conflicting with " + this.conflicted + "! Please reschedule events."
+			msg = "Date and Times for " + this.conflicting.getName() + " is conflicting with " + this.conflicted.getName() + "! Please reschedule events."
 
 		Event getConflicting():
 			return conflicting
@@ -34,7 +34,7 @@ class EventUnavailableException extends Exception:
 	public:
 		EventUnavailableException(Event e):
 			unavailable = e
-			msg = "The event, " + unavailable + " is sold out! Please try again later."
+			msg = "The event, " + unavailable.getName() + ", is sold out! Please try again later."
 
 		Event getUnavailable():
 			return unavailable
