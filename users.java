@@ -131,7 +131,8 @@ public class users implements user{
 
         ticket.add(tic);
 
-        ticket.get(ticket.size() - 1).displayTicket();
+        //ticket.get(ticket.size() - 1).displayTicket();
+        tic.displayTicket();
 
     }
 
