@@ -60,7 +60,7 @@ public class POP extends Activity implements View.OnClickListener {
     public void onClick(View v){
 
         if (v.getId()==R.id.b2){
-            Intent intent = new Intent(POP.this, Main2Activity.class);
+            Intent intent = new Intent(POP.this, Main3Activity.class);
             startActivity(intent);
         }
 
