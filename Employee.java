@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+
 class Employee extends User
 {
 	public void registerAthlete(String name, int phoneNum, int age, String email, String password, String country,
-		char gender, ArrayList sport)
+		char gender, ArrayList sport)throws InputException
    {
-		Athlete a = new Athlete(name, phoneNum, age, email, country, gender, sport);
+      Athlete a = new Athlete(name, phoneNum, age, email, country, gender, sport);  
       /*Add Athlete a to database*/
 		/*Add password to Athlete a in database*/
    }
