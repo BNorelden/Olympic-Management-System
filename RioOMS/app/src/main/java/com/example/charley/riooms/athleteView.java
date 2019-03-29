@@ -148,7 +148,7 @@ public class athleteView extends AppCompatActivity {
                     return tab1;
 
                 case 1:
-                    tab2_employee_tickets tab2 = new tab2_employee_tickets();
+                    tab2_athlete_schedule tab2 = new tab2_athlete_schedule();
                     return tab2;
 
                 case 2:

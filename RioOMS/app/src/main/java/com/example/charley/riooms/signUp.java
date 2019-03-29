@@ -107,7 +107,7 @@ public class signUp extends AppCompatActivity implements View.OnClickListener {
                                         String age = ageField.getText().toString().trim();
                                         int ageNum = Integer.parseInt(age);
 
-                                        users user = new users(id, name, phoneNum, ageNum);
+                                        usersTEST user = new usersTEST(id, name, phoneNum, ageNum);
 
                                        /* userRef.set(user)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {

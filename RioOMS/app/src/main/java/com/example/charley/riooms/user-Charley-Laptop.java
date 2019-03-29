@@ -1,5 +1,4 @@
-/*
-package com.example.charley.riooms;
+/*package com.example.charley.riooms;
 
 public interface user {
 
@@ -15,5 +14,4 @@ public interface user {
     void buyTickets(Event e);
     void cancelTicket(Ticket t);
 
-}
-*/
+}*/

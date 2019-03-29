@@ -22,7 +22,7 @@ public class users implements user{
     }
 
     @Override
-    public void setName(String name) throws InputException {
+    public void setName(String name) throws InputException{
 
         for(int i = 0; i < name.length(); i++){
 
@@ -134,8 +134,7 @@ public class users implements user{
 
         ticket.add(tic);
 
-        //ticket.get(ticket.size() - 1).displayTicket();
-        tic.displayTicket();
+        ticket.get(ticket.size() - 1).displayTicket();
 
     }
 
