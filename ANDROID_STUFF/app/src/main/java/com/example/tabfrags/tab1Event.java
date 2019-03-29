@@ -27,13 +27,16 @@ import java.util.List;
 
 public class tab1Event extends Fragment implements View.OnClickListener {
 
+    public static int c;
     private static final String TAG = "Tab1Event";
     FirebaseFirestore fs;
 
-    private Button btnTEST;
+    Button btnTEST;
     TextView tView, tView3;
-
     Button b;
+
+                            //TOMORROW MERGE THE OTHER CODES AND THEN TYY PAGINATION IF NOT GOOD ENOUGH WE TRY STATIC categories
+                            //DYNAMIC BUTTONS N TEXT + SCROLLABLE + DON'T REMEMBER REST
 
     @Nullable
     @Override
@@ -63,12 +66,17 @@ public class tab1Event extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v){
-        if(v.getId()==R.id.tView) {     // THIS PART FULLY WORKS
+        if(v.getId()==R.id.tView) {
 
             startActivity(new Intent(getActivity(),POP.class));
         }
 
-        else if (v.getId()==R.id.b){ // CLICKING ON THIS CRASHES THE APP
+        else if (v.getId()==R.id.b){
+            // startActivity(new Intent(tab1Event.this.getActivity(), Main2Activity.class));
+            startActivity(new Intent(getActivity(), Main3Activity.class));
+        }
+
+        else if (v.getId()==R.id.b2){ // CLICKING ON THIS CRASHES THE APP
             // startActivity(new Intent(tab1Event.this.getActivity(), Main2Activity.class));
             startActivity(new Intent(getActivity(), Main3Activity.class));
         }
@@ -98,10 +106,12 @@ public class tab1Event extends Fragment implements View.OnClickListener {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 counter++;
 
-                                ya2 = ya2 + "C:"+counter+" " + document.getId() + "\n" + document.getString("Venue");      //NOTE: getId() gets the document names, getData() get everything
+                                ya2 = ya2 + "C:"+counter+" " + document.getId() + "\n" + document.getString("Venue")+ "\n";      //NOTE: getId() gets the document names, getData() get everything
                                 tView3.setText(ya2);
 
                             }
+                            c = counter;
+                            tView.setText(Integer.toString(c));
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -119,6 +129,7 @@ public class tab1Event extends Fragment implements View.OnClickListener {
                       @Override
                       public void onComplete(@NonNull Task<QuerySnapshot> task) {
                           String ya2 = " ";
+                          int counter=0;
                           if (task.isSuccessful()) {
                               for (QueryDocumentSnapshot document : task.getResult()) {
                                   Log.d(TAG, document.getId() + " => " + document.getData());
@@ -126,6 +137,8 @@ public class tab1Event extends Fragment implements View.OnClickListener {
                                   ya2 = ya2 + ("Event: " + document.getString("name") + "\n");
                                   tView3.setText(ya2);
                               }
+                              c = counter;
+                              tView.setText(Integer.toString(c));
                           } else {
                               Log.d(TAG, "Error getting documents: ", task.getException());
                           }

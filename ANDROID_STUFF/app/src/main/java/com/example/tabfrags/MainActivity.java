@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new tabMainEvent(), "All Events");
         adapter.addFragment(new tab1Event(), "Competitive Events");
         adapter.addFragment(new tab2Event(), "Ceremonies Events");
         adapter.addFragment(new tab3Event(), "Autograph Sessions");
