@@ -26,7 +26,7 @@ public class tab2Event extends Fragment {
 
 
         LinearLayout layout = getActivity().findViewById(R.id.Linear2);
-
+        //TextView tview= new TextView(getActivity().getApplicationContext());
 /*
                             THIS IS THE PROGRAMMATIC CODE BUT IT ISN'T WORKING IN TABS YET
         for (int j = 0; j < 4; j++) {
