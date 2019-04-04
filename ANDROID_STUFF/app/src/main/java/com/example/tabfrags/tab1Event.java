@@ -1,8 +1,10 @@
 package com.example.tabfrags;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,8 +54,9 @@ public class tab1Event extends Fragment implements View.OnClickListener {
 
         fs = FirebaseFirestore.getInstance();
 
-       // readSingleContact();
-        readAll();
+       // readSingleContact(); THIS IS FOR FIRST TEXT VIEW
+        readSingleContact();
+        readAll();  //2nd TEXTView
 
         btnTEST.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,10 +93,11 @@ public class tab1Event extends Fragment implements View.OnClickListener {
 // MAYBE TRY MAPPINGGGGGGGGGGGG
 
         //fs.collection("CSV-Events").document("aquatics").collection("backstroke") //This Works
-        fs.collection("CSV-Events").document("archery").collection("archery") //This does not work
+        fs.collection("CSV-Events").document("archery").collection("archery")
                 //fs.collection("events")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         String ya2 = "";
@@ -105,13 +109,16 @@ public class tab1Event extends Fragment implements View.OnClickListener {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 counter++;
+                               // Event e1 = new Event(document.getString("Venue"),);
+                               // Event e1= new Event("testevent", "diving", 'E', "Location", 3, 5, 14, 45, 17, 6, 2, 15, 2008,
+                               //         "EDT",122.22f,100);
 
                                 ya2 = ya2 + "C:"+counter+" " + document.getId() + "\n" + document.getString("Venue")+ "\n";      //NOTE: getId() gets the document names, getData() get everything
                                 tView3.setText(ya2);
 
                             }
                             c = counter;
-                            tView.setText(Integer.toString(c));
+                            //tView.setText(Integer.toString(c));
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -164,10 +171,14 @@ public class tab1Event extends Fragment implements View.OnClickListener {
             }
         });
     } */
-       
-    private void readSingleContact(){
 
-        DocumentReference contact =  fs.collection("events").document("diving");
+
+       //
+    private void readSingleContact(){
+        //fs.collection("CSV-Events").document("archery").collection("archery")
+        DocumentReference contact =  fs.collection("CSV-Events").document("archery")
+                .collection("archery").document("Men's Team");
+        //DocumentReference contact =  fs.collection("events").document("diving");
         contact.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -175,7 +186,7 @@ public class tab1Event extends Fragment implements View.OnClickListener {
                 {
                     DocumentSnapshot doc = task.getResult();
 
-                    String ya1 = "Event: "+ doc.getString("name")+"    Type: " + doc.getString("type");
+                    String ya1 = "Event: "+ doc.getString("Event Name")+"\nVenue: " + doc.getString("Venue");
                     //String ya2 = "Email: "+ doc.getString("email");
 
 

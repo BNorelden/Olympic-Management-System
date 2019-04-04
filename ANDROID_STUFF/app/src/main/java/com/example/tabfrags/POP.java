@@ -67,8 +67,9 @@ public class POP extends Activity implements View.OnClickListener {
     }
 
     private void readSingleContact(){
-
-        DocumentReference contact =  fs.collection("events").document("diving");
+        DocumentReference contact =  fs.collection("CSV-Events").document("archery")
+                .collection("archery").document("Men's Team");
+        //DocumentReference contact =  fs.collection("events").document("diving");
         contact.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -76,9 +77,9 @@ public class POP extends Activity implements View.OnClickListener {
                 {
                     DocumentSnapshot doc = task.getResult();
 
-                    String ya1 = "Event: "+ doc.getString("name")+"    Type: " + doc.getString("type");
-                    String ya2 = "place: "+ doc.getString("place") + "                  Price: $"
-                            + doc.getLong("price") +"     Seats:"+ doc.getLong("seats");
+                    String ya1 = "Event: "+ doc.getString("Event Name")+"\nVenue: " + doc.getString("Venue");
+                   // String ya2 = "place: "+ doc.getString("place") + "                  Price: $"
+                   //         + doc.getLong("price") +"     Seats:"+ doc.getLong("seats");
                     //String ya2 = "place: "+ doc.getString("place") + "      Time: " + doc.getString("time[0]") + ":" + doc.getString("time[1]") + " - "
                     // + doc.getString("time[2]") + ":" + doc.getString("time[3]");
 
@@ -86,7 +87,7 @@ public class POP extends Activity implements View.OnClickListener {
                     //CODE ABOVE DOES NOT WORK FOR ARRAYS
 
                     tView1.setText(ya1);
-                    tView2.setText(ya2);
+                  //  tView2.setText(ya2);
                   //  tView4.setText(ya3);
 
 
