@@ -1,4 +1,5 @@
 package com.example.tabfrags;
+
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
@@ -20,11 +21,12 @@ public class Event {
 		
 		ArrayList<String> participant = new ArrayList<String>();
 		
+		
 		@RequiresApi(api = Build.VERSION_CODES.O)
 		public  Event(String name, String category, char type, String venue, int startDay, int startMonth, int startHr, int startMin,
 					  int endDay, int endMonth, int endHr, int endMin, int year, String zone, float price, int seats) throws InputException{
 			
-			setName(name);
+		setName(name);
 		setCat(category);
 		setType(type);
 		setVenue(venue);
@@ -66,6 +68,7 @@ public class Event {
 			this.venue = venue;
 	}
 		
+		
 		@RequiresApi(api = Build.VERSION_CODES.O)
 		void setStartDate(int startDay, int startMonth, int year, int startHr, int startMin, String zone) {
 			String date = startDay + "/" + startMonth + "/" + year + " " + startHr + ":" + startMin + " " + zone;
@@ -79,6 +82,13 @@ public class Event {
 			String date = endDay + "/" + endMonth + "/" + year + " " + endHr + ":" + endMin + " " + zone;
 			DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:m z");
 			endDateTime = ZonedDateTime.parse(date, format);
+		}
+		
+		@RequiresApi(api = Build.VERSION_CODES.O)
+		void setStartTime(int hr, int min, String zone) {
+			String time = hr + ":" + min + " " + zone;
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("H:m z");
+			startDateTime = ZonedDateTime.parse(time, format);
 		}
 				
 	/*	
@@ -156,15 +166,30 @@ public class Event {
 			return venue;
 		}
 		
-		ZonedDateTime getStartDateTime() {
-			System.out.println(startDateTime);
+		@RequiresApi(api = Build.VERSION_CODES.O)
+		ZonedDateTime getStartDate() {
+			String GSD = startDateTime.getMonth()+"/"+startDateTime.getDayOfMonth()+"/"+startDateTime.getYear(); //incase we need to call it
+			System.out.print(startDateTime.getMonth()+"/"+startDateTime.getDayOfMonth()+"/"+startDateTime.getYear()+" ");
 			return startDateTime;
 			}
 
-		ZonedDateTime getEndDateTime() {
-			System.out.println(endDateTime);
-
+		@RequiresApi(api = Build.VERSION_CODES.O)
+		ZonedDateTime getEndDate() {
+			String GED = endDateTime.getMonth()+"/"+endDateTime.getDayOfMonth()+"/"+endDateTime.getYear(); //incase we need to call it
+			System.out.print(endDateTime.getMonth()+"/"+endDateTime.getDayOfMonth()+"/"+endDateTime.getYear()+" ");
 			return endDateTime;
+		}
+		
+		@RequiresApi(api = Build.VERSION_CODES.O)
+		ZonedDateTime getStartDateTime() {
+			System.out.print(startDateTime.getHour()+":"+startDateTime.getMinute()+" "+startDateTime.getZone()+" ");
+			return startDateTime;
+		}
+		
+		@RequiresApi(api = Build.VERSION_CODES.O)
+		ZonedDateTime getEndtDateTime() {
+			System.out.print(endDateTime.getHour()+":"+endDateTime.getMinute()+" "+endDateTime.getZone()+" ");
+			return startDateTime;
 		}
 		
 
@@ -187,18 +212,28 @@ public class Event {
 
 
 
-	/*
-		Event e1= new Event("testevent", "diving", 'E', "Location", 3, 5, 14, 45, 17, 6, 2, 15, 2008,
+		//String name, String category, char type, String venue, int startDay, int startMonth, int startHr, int startMin,
+		// int endDay, int endMonth, int endHr, int endMin, int year, String zone, float price, int seats)
+		
+		Event e1= new Event("testevent", "diving", 'E', "Loca", 3, 5, 14, 45, 17, 6, 2, 15, 2008,
 				"EDT",122.22f,100); //works
 		
 		
 		e1.addParticipant("gee");
 		e1.addParticipant("eee");
 		e1.addParticipant("ree");
+		
 		System.out.println();
+		System.out.print("Start Date andTime: ");
+		e1.getStartDate();
 		e1.getStartDateTime();
+		
 		System.out.println();
-		e1.getEndDateTime();
+		System.out.print("End Date and Time: ");
+		e1.getEndDate();
+		e1.getEndtDateTime();
+		
+		System.out.println();
 		System.out.println(e1.getParticipants());
 		
 		System.out.println("Name of Event: "+e1.getName());
@@ -208,7 +243,7 @@ public class Event {
 		System.out.println("Seats Remaining: "+e1.getSeats());
 		e1.decSeats();
 		System.out.println("Seats Remaining!! : "+e1.getSeats());
-		*/
+		
 		
 	}
 

@@ -2,8 +2,10 @@ package com.example.tabfrags;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
@@ -71,13 +73,17 @@ public class POP extends Activity implements View.OnClickListener {
                 .collection("archery").document("Men's Team");
         //DocumentReference contact =  fs.collection("events").document("diving");
         contact.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful())
                 {
                     DocumentSnapshot doc = task.getResult();
 
-                    String ya1 = "Event: "+ doc.getString("Event Name")+"\nVenue: " + doc.getString("Venue");
+                    String ya1 = "Event: "+ doc.getString("Event Name");
+                    String ya2 = "Venue: " + doc.getString("Venue");
+                    String ya4 = "Sport: " + doc.getString("sport");
+                    String ya5 = "Discipline: " + doc.getString("discipline");
                    // String ya2 = "place: "+ doc.getString("place") + "                  Price: $"
                    //         + doc.getLong("price") +"     Seats:"+ doc.getLong("seats");
                     //String ya2 = "place: "+ doc.getString("place") + "      Time: " + doc.getString("time[0]") + ":" + doc.getString("time[1]") + " - "
@@ -85,11 +91,17 @@ public class POP extends Activity implements View.OnClickListener {
 
                     //String ya3 = "date: "+ doc.getString("date[0]") + "/" + doc.getString("date[1]") + doc.getString("date[2]");
                     //CODE ABOVE DOES NOT WORK FOR ARRAYS
-
+                    tView1.setTextSize(25);
                     tView1.setText(ya1);
-                  //  tView2.setText(ya2);
-                  //  tView4.setText(ya3);
 
+                    tView2.setTextSize(25);
+                    tView2.setText(ya2);
+
+                    tView4.setTextSize(25);
+                    tView4.setText(ya4);
+
+                    tView5.setTextSize(25);
+                    tView5.setText(ya5);
 
          /*
                     OR USING STRING BUILDER

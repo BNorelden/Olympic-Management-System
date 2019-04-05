@@ -109,6 +109,7 @@ public class tab1Event extends Fragment implements View.OnClickListener {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 counter++;
+                                c = counter;
                                // Event e1 = new Event(document.getString("Venue"),);
                                // Event e1= new Event("testevent", "diving", 'E', "Location", 3, 5, 14, 45, 17, 6, 2, 15, 2008,
                                //         "EDT",122.22f,100);
@@ -117,7 +118,7 @@ public class tab1Event extends Fragment implements View.OnClickListener {
                                 tView3.setText(ya2);
 
                             }
-                            c = counter;
+
                             //tView.setText(Integer.toString(c));
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -175,7 +176,8 @@ public class tab1Event extends Fragment implements View.OnClickListener {
 
        //
     private void readSingleContact(){
-        //fs.collection("CSV-Events").document("archery").collection("archery")
+    //    DocumentReference contact =  fs.collection("CSV-Events").document("archery")
+    //            .collection("archery").document("Men's Team");
         DocumentReference contact =  fs.collection("CSV-Events").document("archery")
                 .collection("archery").document("Men's Team");
         //DocumentReference contact =  fs.collection("events").document("diving");
