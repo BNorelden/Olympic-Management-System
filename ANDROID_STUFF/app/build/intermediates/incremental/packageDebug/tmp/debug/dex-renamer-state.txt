@@ -1,0 +1,10 @@
+#Fri Apr 05 18:51:49 EDT 2019
+path.2=classes2.dex
+path.1=classes.dex
+path.0=classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+base.2=/home/ven1101/Desktop/git_rep/Olympic-Management-System/ANDROID_STUFF/app/build/intermediates/dex/debug/mergeExtDexDebug/out
+base.1=/home/ven1101/Desktop/git_rep/Olympic-Management-System/ANDROID_STUFF/app/build/intermediates/dex/debug/mergeExtDexDebug/out
+base.0=/home/ven1101/Desktop/git_rep/Olympic-Management-System/ANDROID_STUFF/app/build/intermediates/dex/debug/mergeProjectDexDebug/out

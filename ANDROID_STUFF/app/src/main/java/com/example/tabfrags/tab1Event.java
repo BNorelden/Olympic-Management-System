@@ -178,8 +178,7 @@ public class tab1Event extends Fragment implements View.OnClickListener {
     private void readSingleContact(){
     //    DocumentReference contact =  fs.collection("CSV-Events").document("archery")
     //            .collection("archery").document("Men's Team");
-        DocumentReference contact =  fs.collection("CSV-Events").document("archery")
-                .collection("archery").document("Men's Team");
+        DocumentReference contact =  fs.collection("EVENTS").document("Men's Floor Exercise");
         //DocumentReference contact =  fs.collection("events").document("diving");
         contact.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -188,7 +187,8 @@ public class tab1Event extends Fragment implements View.OnClickListener {
                 {
                     DocumentSnapshot doc = task.getResult();
 
-                    String ya1 = "Event: "+ doc.getString("Event Name")+"\nVenue: " + doc.getString("Venue");
+                    String ya1 = "Event: "+ doc.getString("event Name")+"\nVenue: " + doc.getString("venue");
+
                     //String ya2 = "Email: "+ doc.getString("email");
 
 

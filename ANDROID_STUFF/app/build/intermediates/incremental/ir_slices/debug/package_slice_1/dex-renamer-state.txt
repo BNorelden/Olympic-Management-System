@@ -1,0 +1,4 @@
+#Fri Mar 22 13:39:52 EDT 2019
+base.0=/home/ven1101/Desktop/git_rep/Olympic-Management-System/ANDROID_STUFF/app/build/intermediates/transforms/dexMerger/debug/1
+path.0=classes.dex
+renamed.0=classes.dex

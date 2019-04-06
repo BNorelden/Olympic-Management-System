@@ -166,6 +166,8 @@ public class tab2Event extends Fragment {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 counter++;
                                 cerCount = counter;
+                                //String[cerCount] arr;
+                                //String[] tArray = new String[cerCount];
 
                                 ya2 = ya2 + "C:"+counter+" " + document.getId() + "\n";      //NOTE: getId() gets the document names, getData() get everything
                                 holder = ya2;

@@ -62,6 +62,7 @@ public class POP extends Activity implements View.OnClickListener {
     public void onClick(View v){
 
         if (v.getId()==R.id.b2){
+            //gotta change this to dynamic button and put it in readSingleContact and make another pop activity to be dynamic
             Intent intent = new Intent(POP.this, Main3Activity.class);
             startActivity(intent);
         }
@@ -69,8 +70,9 @@ public class POP extends Activity implements View.OnClickListener {
     }
 
     private void readSingleContact(){
-        DocumentReference contact =  fs.collection("CSV-Events").document("archery")
-                .collection("archery").document("Men's Team");
+       // DocumentReference contact =  fs.collection("CSV-Events").document("archery")
+         //       .collection("archery").document("Men's Team");
+        DocumentReference contact =  fs.collection("EVENTS").document("Men's Floor Exercise");
         //DocumentReference contact =  fs.collection("events").document("diving");
         contact.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -79,11 +81,11 @@ public class POP extends Activity implements View.OnClickListener {
                 if(task.isSuccessful())
                 {
                     DocumentSnapshot doc = task.getResult();
-
-                    String ya1 = "Event: "+ doc.getString("Event Name");
-                    String ya2 = "Venue: " + doc.getString("Venue");
-                    String ya4 = "Sport: " + doc.getString("sport");
-                    String ya5 = "Discipline: " + doc.getString("discipline");
+                    final String docID = doc.getId();
+                    String ya1 = "Event: "+ doc.getString("event Name");
+                    String ya2 = "Venue: " + doc.getString("venue");
+                    String ya4 = "Category: " + doc.getString("category");
+                    String ya5 = "Price: " + doc.getString("price")+"\t Seats: "+ doc.getString("seats");
                    // String ya2 = "place: "+ doc.getString("place") + "                  Price: $"
                    //         + doc.getLong("price") +"     Seats:"+ doc.getLong("seats");
                     //String ya2 = "place: "+ doc.getString("place") + "      Time: " + doc.getString("time[0]") + ":" + doc.getString("time[1]") + " - "
