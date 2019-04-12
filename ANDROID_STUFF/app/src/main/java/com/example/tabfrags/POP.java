@@ -11,14 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.firebase.client.GenericTypeIndicator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.List;
 
 import static java.lang.Long.getLong;
 
@@ -63,7 +60,7 @@ public class POP extends Activity implements View.OnClickListener {
 
         if (v.getId()==R.id.b2){
             //gotta change this to dynamic button and put it in readSingleContact and make another pop activity to be dynamic
-            Intent intent = new Intent(POP.this, Main3Activity.class);
+            Intent intent = new Intent(POP.this, PurchaseTic.class);
             startActivity(intent);
         }
 

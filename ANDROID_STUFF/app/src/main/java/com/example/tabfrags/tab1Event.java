@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -22,9 +21,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class tab1Event extends Fragment implements View.OnClickListener {
@@ -35,7 +31,7 @@ public class tab1Event extends Fragment implements View.OnClickListener {
 
     Button btnTEST;
     TextView tView, tView3;
-    Button b;
+    Button b,btn0;
 
                             //TOMORROW MERGE THE OTHER CODES AND THEN TYY PAGINATION IF NOT GOOD ENOUGH WE TRY STATIC categories
                             //DYNAMIC BUTTONS N TEXT + SCROLLABLE + DON'T REMEMBER REST
@@ -51,6 +47,9 @@ public class tab1Event extends Fragment implements View.OnClickListener {
         b = view.findViewById(R.id.b);
         b.setOnClickListener(this);
         btnTEST = view.findViewById(R.id.btnTEST);
+
+        btn0 = view.findViewById(R.id.btn0);
+        btn0.setOnClickListener(this);
 
         fs = FirebaseFirestore.getInstance();
 
@@ -74,14 +73,19 @@ public class tab1Event extends Fragment implements View.OnClickListener {
             startActivity(new Intent(getActivity(),POP.class));
         }
 
+        else if(v.getId()==R.id.btn0) {
+
+            startActivity(new Intent(getActivity(),popUpDynamic.class));
+        }
+
         else if (v.getId()==R.id.b){
             // startActivity(new Intent(tab1Event.this.getActivity(), Main2Activity.class));
-            startActivity(new Intent(getActivity(), Main3Activity.class));
+            startActivity(new Intent(getActivity(), PurchaseTic.class));
         }
 
         else if (v.getId()==R.id.b2){ // CLICKING ON THIS CRASHES THE APP
             // startActivity(new Intent(tab1Event.this.getActivity(), Main2Activity.class));
-            startActivity(new Intent(getActivity(), Main3Activity.class));
+            startActivity(new Intent(getActivity(), PurchaseTic.class));
         }
 
 

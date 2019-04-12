@@ -1,5 +1,6 @@
 package com.example.tabfrags;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,15 +28,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.example.tabfrags.tab1Event.c;
 
-public class tab2Event extends Fragment {
+
+public class tab2Event extends Fragment { //implements View.OnClickListener
 
     private static final String TAG = "Tab2Event";
 
+    static String swapS; //hold the document name so i can use it in other activities
+
+
     private TextView tview;
-    private Button btnTEST;
-    int o=c; // the public static int from tab1Event works
+    private Button btnTEST,btn;
+
     int cerCount;
     String holder = "";
     LinearLayout layout;
@@ -48,112 +56,33 @@ public class tab2Event extends Fragment {
         View view = inflater.inflate(R.layout.tab2event,container,false);
 
         fs = FirebaseFirestore.getInstance();
+
+
         readAll();
- /*
-  *           ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView1);
-        // Get the widgets reference from XML layout
-        LinearLayout layout = findViewById(R.id.layout1);
-        layout.setOrientation(LinearLayout.VERTICAL);
 
-        //scrollView.addView(layout); aint working
-        for (int j = 0; j < 12; j++) {
-            TextView tview= new TextView(this);
-            Button btn= new Button(this);
-
-            tview.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-
-            tview.setId(j+100);
-            btn.setId(j);
-
-            tview.setText("TextView"+ (j+100));
-            btn.setText("Btn "+ j);
-
-            layout.addView(tview);
-            tview.setPadding(150, 100, 150, 0);
-
-            //LinearLayout.LayoutParams tviewparam = (LinearLayout.LayoutParams)btn.getLayoutParams();
-           // tviewparam.setMargins(100, 150, 0, 0); //substitute parameters for left, top, right, bottom
-           // tview.setLayoutParams(tviewparam);
-
-            layout.addView(btn);
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)btn.getLayoutParams();
-            params.setMargins(850, -100, 200, 50); //substitute parameters for left, top, right, bottom
-            btn.setLayoutParams(params);
-  *
-  *
-  * */
-        Toast.makeText(getActivity(), cerCount+holder,
-                Toast.LENGTH_LONG).show();
 
         layout = view.findViewById(R.id.Linear2);
 
         context = getActivity().getApplicationContext();
-/*
-        for (int j = 0 ; j < cerCount; j++) {
 
-            tview = new TextView(context);
-            //+ Button btn= new Button(context);
-
-
-
-            //tview.setText("Olympic Stadium");
-            tview.setTextColor(Color.argb(100, 28, 240, 134));
-            tview.setText(holder);
-
-            tview.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-
-            tview.setId(j+100);
-
-            tview.setPadding(150, 150, 0, 0);
-            //tview.requestLayout();
-            //tview.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-
-            layout.addView(tview);
-
-            //tview.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-
-           //+btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-
-         //tview.setId(j+100);
-          //+  btn.setId(j);
-
-           // tview.setText("TextView"+ (j+100));
-          // + btn.setText("Button"+ j);
-
-           // layout.addView(tview);
-
-           // tview.setPadding(50, 100, 150, 0);
-
-           // LayoutParams tviewparam = (LayoutParams)tview.getLayoutParams();
-
-           // tviewparam.setMargins(100, 150, 0, 0); //substitute parameters for left, top, right, bottom
-          //  tview.setLayoutParams(tviewparam);
-
-           // layout.addView(tview);
-           //+ LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)btn.getLayoutParams();
-         //+   params.setMargins(850, -100, 150, 50); //substitute parameters for left, top, right, bottom
-          //+  btn.setLayoutParams(params);
-
-        }   */
 
 
         return view;
     }
 
     private void readAll() {            //it should read all the documents and just get all Id's with a counter
-// MAYBE TRY MAPPINGGGGGGGGGGGG
 
-        //fs.collection("CSV-Events").document("aquatics").collection("backstroke") //This Works
-        fs.collection("CERb")
-                //fs.collection("events")
+
+
+        fs.collection("EVENTS")
+                //        fs.collection("CERb")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-
+                        final Map<String, Object> data1 = new HashMap<>();  //*********************************** MAP
                         String ya2 = "";
                         int counter=0;
 
@@ -164,36 +93,84 @@ public class tab2Event extends Fragment {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                final String did = document.getId();            //  DOCID************************************
+
                                 counter++;
                                 cerCount = counter;
-                                //String[cerCount] arr;
-                                //String[] tArray = new String[cerCount];
 
-                                ya2 = ya2 + "C:"+counter+" " + document.getId() + "\n";      //NOTE: getId() gets the document names, getData() get everything
+
+                                data1.put("Event " +cerCount, did); //************************************************MAP
+
+                                //ya2 = ya2 + "C:"+counter+" " + document.getId() + "\n";      //NOTE: getId() gets the document names, getData() get everything
+                                ya2 =  "C:"+counter+" " + document.getId() + "\n";
                                 holder = ya2;
 
                                 context = getActivity().getApplicationContext();
 
-                              //  for (int j = 1 ; j <= cerCount; j++) {
-
                                     tview = new TextView(context);
-                                    //+ Button btn= new Button(context);
+                                    tview.setId(cerCount+100); //first id should be 101 for textviews
 
 
-                                    //tview.setText("Olympic Stadium");
+                                    btn= new Button(context);
+                                    btn.setId(cerCount+1000);  // first id should be 1001 for buttons
+
+
+
+
+
+                                /***************************************************Dynamic TextView********************************************/
+
                                     tview.setTextColor(Color.argb(100, 28, 240, 134));
                                     tview.setText(holder+"\n");
 
                                     tview.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
 
-                                    tview.setId(cerCount + 100);
 
                                     tview.setPadding(150, 150, 0, 0);
 
                                     layout.addView(tview);
 
-                               // }
+                                /***************************************************Dynamic Button********************************************/
 
+                                    btn.setText("purchase "+ cerCount);
+                                                      // btn.setWidth(50);
+                                                       // btn.setHeight(50);
+
+                                                       // LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)btn.getLayoutParams();
+                                                       // params.setMargins(850, -100, 150, 50); //substitute parameters for left, top, right, bottom
+                                                       // btn.setPadding(150, 50, 150, 50);
+                                                       // btn.
+                                    layout.addView(btn);
+                                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)btn.getLayoutParams();
+                                    params.setMargins(850, -200, 200, 50); //substitute parameters for left, top, right, bottom
+                                    btn.setLayoutParams(params);
+                                                       // btn.setLayoutParams (new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                                                        //btn.setPadding(650, -100, 0, 0);
+
+                                                       // btn.setLayoutParams(params);
+                                                       // layout.addView(btn);
+
+                                                   // }
+                                tview.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        Toast.makeText(getActivity(), "We got this working with doc id \n" + did/* data1.get("Event 1")*/,Toast.LENGTH_SHORT).show();
+                                        swapS = did;
+                                        startActivity(new Intent(getActivity(),popUpDynamic.class));
+                                    }
+                                });
+
+                                btn.setOnClickListener(new OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        swapS = did;
+
+                                        Intent intent = new Intent(getActivity(), PurchaseTic.class);
+                                        startActivity(intent);
+
+                                    }
+                                });
 
                             }
 
@@ -204,6 +181,6 @@ public class tab2Event extends Fragment {
                 });
     }
 
-}
 
+}
 

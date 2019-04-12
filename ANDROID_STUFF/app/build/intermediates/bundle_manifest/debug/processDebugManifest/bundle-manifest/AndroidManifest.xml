@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="22"
+        android:minSdkVersion="26"
         android:targetSdkVersion="28" />
 
     <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
@@ -26,7 +26,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.example.tabfrags.Main3Activity" />
+        <activity
+            android:name="com.example.tabfrags.popUpDynamic"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name="com.example.tabfrags.PurchaseTic" />
         <activity
             android:name="com.example.tabfrags.MainActivity"
             android:label="@string/app_name"
@@ -117,6 +120,11 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <provider
+            android:name="com.android.tools.ir.server.InstantRunContentProvider"
+            android:authorities="com.example.tabfrags.com.android.tools.ir.server.InstantRunContentProvider"
+            android:multiprocess="true" />
     </application>
 
 </manifest>
