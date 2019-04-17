@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RioOms</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_Filter">Filter</string>
+
+    <string name="title_Events">Events</string>
+    <string name="title_Tickets">Tickets</string>
+    <string name="title_noTickets">There are No Tickets Available</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
