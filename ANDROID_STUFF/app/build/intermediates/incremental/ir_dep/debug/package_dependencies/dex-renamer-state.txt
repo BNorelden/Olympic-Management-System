@@ -1,7 +1,7 @@
-#Thu Apr 11 00:19:07 EDT 2019
-base.0=C\:\\Users\\Bilal\\Desktop\\ANDROID_STUFF\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
+#Mon Apr 15 23:05:10 EDT 2019
+base.0=C\:\\Users\\Bilal\\Documents\\GitHub\\Olympic-Management-System\\ANDROID_STUFF\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
 path.1=classes2.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=C\:\\Users\\Bilal\\Desktop\\ANDROID_STUFF\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
+base.1=C\:\\Users\\Bilal\\Documents\\GitHub\\Olympic-Management-System\\ANDROID_STUFF\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
