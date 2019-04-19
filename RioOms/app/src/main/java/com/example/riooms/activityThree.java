@@ -1,5 +1,6 @@
 package com.example.riooms;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,18 +11,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class activityThree extends AppCompatActivity {
     private TextView tt;
     LinearLayout linearLayout;
+    Context context;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three);
 
         linearLayout = (LinearLayout) findViewById(R.id.L4);
-        //tt = findViewById(R.id.tv1);
 
+        /*
+        context = getApplicationContext();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        //String currUser = mAuth.getCurrentUser().getUid(); //charley's error
+        String currUser = "someone";
+        ticketList alist = new ticketList();
+        alist.displayList(currUser,linearLayout, context);
+
+        */
 
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -32,13 +43,16 @@ public class activityThree extends AppCompatActivity {
         //tv.setText("test");
         linearLayout.addView(tt);
 
+
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent intent0 = new Intent(activityThree.this,MainActivity.class);
+                        Intent intent0 = new Intent(activityThree.this, userView.class);
                         startActivity(intent0);
 
                         return true;
@@ -73,7 +87,7 @@ public class activityThree extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent intent0 = new Intent(activityOne.this,MainActivity.class);
+                        Intent intent0 = new Intent(activityOne.this,userView.class);
                         startActivity(intent0);
 
                         return true;

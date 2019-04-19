@@ -105,6 +105,51 @@
           }
         },
         {
+          "client_id": "804015415505-fibpgbja241snkhsc20posp9r6kh8th3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.riooms",
+            "certificate_hash": "992b20a00d4c909dbed536ea28c4c09b14e1806c"
+          }
+        },
+        {
+          "client_id": "804015415505-n2he7gcet7jckcm24eg943qoga8nu48b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH5NOIDEeAomF7xMcPqwqDY92GLlPYWLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804015415505-n2he7gcet7jckcm24eg943qoga8nu48b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804015415505:android:aa95a83f24224433",
+        "android_client_info": {
+          "package_name": "com.example.scheduleevent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804015415505-0kqekhohcgii55cqti94pb4hj77dj8a9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scheduleevent",
+            "certificate_hash": "7bfc5cb4f5fb75ba9998f8059d59958465578a07"
+          }
+        },
+        {
           "client_id": "804015415505-n2he7gcet7jckcm24eg943qoga8nu48b.apps.googleusercontent.com",
           "client_type": 3
         }

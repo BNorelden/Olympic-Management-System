@@ -1,5 +1,6 @@
 package com.example.riooms;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class activityTwo extends AppCompatActivity {
     private TextView tt;
     LinearLayout linearLayout;
@@ -20,6 +23,13 @@ public class activityTwo extends AppCompatActivity {
         setContentView(R.layout.activity_two);
 
         linearLayout = (LinearLayout) findViewById(R.id.L3);
+
+        Context context = getApplicationContext();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        //String currUser = mAuth.getCurrentUser().getUid(); //charley's error
+        String currUser = "someone";
+        ticketList alist = new ticketList();
+        alist.displayList(currUser,linearLayout, context);
         //tt = findViewById(R.id.tv1);
 
 
@@ -38,7 +48,7 @@ public class activityTwo extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent intent0 = new Intent(activityTwo.this,MainActivity.class);
+                        Intent intent0 = new Intent(activityTwo.this, userView.class);
                         startActivity(intent0);
 
                         return true;
@@ -80,7 +90,7 @@ public class activityTwo extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent intent0 = new Intent(activityOne.this,MainActivity.class);
+                        Intent intent0 = new Intent(activityOne.this,userView.class);
                         startActivity(intent0);
 
                         return true;

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Bilal\\Documents\\GitHub\\Olympic-Management-System\\ANDROID_STUFF\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "/home/ven1101/Desktop/git_rep/Olympic-Management-System/ANDROID_STUFF/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\cfb8dba927636aa6935ef2eaec59613d\\res\\values-v24\\values-v24.xml",
+                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/7d9f74f0e93e71d519512669af12d4c9/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\b1c7c71ece4508937168b7852bb8814f\\res\\values-v24\\values-v24.xml",
+                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/667173845d8457fce208395ba9c1aba8/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

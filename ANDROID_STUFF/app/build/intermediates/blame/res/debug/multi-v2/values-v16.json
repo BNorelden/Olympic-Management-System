@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Bilal\\Documents\\GitHub\\Olympic-Management-System\\ANDROID_STUFF\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
+            "outputFile": "/home/ven1101/Desktop/git_rep/Olympic-Management-System/ANDROID_STUFF/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\5273c262a53b60efcd83b8bd38bd0931\\res\\values-v16\\values-v16.xml",
+                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/9c273e691369f00d9610190e50ba1ef6/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\b1c7c71ece4508937168b7852bb8814f\\res\\values-v16\\values-v16.xml",
+                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/667173845d8457fce208395ba9c1aba8/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
