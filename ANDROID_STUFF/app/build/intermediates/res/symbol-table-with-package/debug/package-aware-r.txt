@@ -1072,6 +1072,7 @@ drawable tooltip_frame_light
 id ALT
 id CTRL
 id FUNCTION
+id LL
 id Linear2
 id META
 id SHIFT
@@ -1209,6 +1210,7 @@ id radio
 id right
 id right_icon
 id right_side
+id rr
 id save_image_matrix
 id save_non_transition_alpha
 id save_scale_type
@@ -1345,7 +1347,6 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
-layout activity_main2
 layout activity_main3
 layout activity_pop_up_dynamic
 layout design_bottom_navigation_item
