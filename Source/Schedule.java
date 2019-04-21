@@ -1,12 +1,11 @@
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 
 class Schedule {
 
     protected ArrayList<Event> event;
 
-    Schedule() {
+    public Schedule() {
 
         event = new ArrayList<Event>();
 
@@ -34,37 +33,14 @@ class Schedule {
 
     }
 
-    public Event searchName(String name) {
+    public ArrayList<Event> getEvents() {
 
-        Event result = null;
-
-        for(int i = 0; i < event.size(); i++) {
-            Event e = event.get(i);
-            if(e.getName() == name) {
-                result = e;
-                break;
-            }
-        }
-
-        return result;
+        return event;
     }
 
-    public ArrayList searchCat(String category) {
+    public ArrayList<Event> searchType(char type) {
 
-        ArrayList result = new ArrayList<Event>();
-
-        for(int i = 0; i < event.size(); i++) {
-            Event e = event.get(i);
-            if(e.getCat() == category)
-                result.add(e);
-        }
-
-        return result;
-    }
-
-    public ArrayList searchType(char type) {
-
-        ArrayList result = new ArrayList<Event>();
+        ArrayList<Event> result = new ArrayList<Event>();
 
         for(int i = 0; i < event.size(); i++) {
             Event e = event.get(i);
@@ -75,60 +51,18 @@ class Schedule {
         return result;
     }
 
-    public ArrayList searchVen(String venue) {
-
-        ArrayList result = new ArrayList<Event>();
-
-        for(int i = 0; i < event.size(); i++) {
-            Event e = event.get(i);
-            if(e.getVenue() == venue)
-                result.add(e);
-        }
-
-        return result;
-    }
-
-    public ArrayList searchDate(String date) {
-
-        ArrayList result = new ArrayList<Event>();
-
-        for(int i = 0; i < event.size(); i++) {
-            Event e = event.get(i);
-            ZonedDateTime dateTime = e.getStartDateTime();
-            String thisDate = dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            if(thisDate.equals(date))
-                result.add(e);
-        }
-
-        return result;
-    }
-
-    public ArrayList searchTime(String time) {
-
-        ArrayList result = new ArrayList<Event>();
-
-        for(int i = 0; i < event.size(); i++) {
-            Event e = event.get(i);
-            ZonedDateTime dateTime = e.getStartDateTime();
-            String thisTime = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
-            if(thisTime.equals(time))
-                result.add(e);
-        }
-
-        return result;
-    }
-
     public Event conflict(Event first) {
 
         Event second;
         int hoursApart = 1;
-        String firstStartTime = first.getStartDateTime().minusHours(hoursApart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-        String firstEndTime = first.getEndDateTime().plusHours(hoursApart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String firstStartTime = first.getStartDateTime().minusHours(hoursApart).format(formatter);
+        String firstEndTime = first.getEndDateTime().plusHours(hoursApart).format(formatter);
 
         for(int i = 0; i < event.size(); i++) {
             second = event.get(i);
-            String secondStartTime = second.getStartDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-            String secondEndTime = second.getEndDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+            String secondStartTime = second.getStartDateTime().format(formatter);
+            String secondEndTime = second.getEndDateTime().format(formatter);
             if(firstEndTime.compareTo(secondStartTime) > 0 && firstStartTime.compareTo(secondEndTime) < 0)
                 return second;
         }
@@ -140,20 +74,35 @@ class Schedule {
 
 class EventSchedule extends Schedule {
 
+    private static EventSchedule schedule = new EventSchedule();
+    
     EventSchedule() {
 
         super();
 
     }
 
+    public static EventSchedule getInstance() {
+
+        return schedule;
+    }
+
     public void notifySecurity(Event ceremony) {
 
+        //Inform security of award ceremony scheduled
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.println("Security has been notified of " + ceremony.getName());
+        System.out.println("-------------------------------------------------------------------------------------------------");
         //Inform security of award ceremony scheduled
 
     }
 
     public void informUsers(String msg) {
 
+        //Invoke activity that informs all users of event change
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.println(msg);
+        System.out.println("-------------------------------------------------------------------------------------------------");
         //Invoke activity that informs all users of event change
 
     }
@@ -162,7 +111,7 @@ class EventSchedule extends Schedule {
 
 class AthleteSchedule extends Schedule {
 
-    AthleteSchedule() {
+    public AthleteSchedule() {
 
         super();
 
