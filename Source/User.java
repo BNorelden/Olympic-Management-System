@@ -8,7 +8,7 @@ public class User implements Usable {
     protected String email;
     protected ArrayList<Ticket> ticket;
 
-    public User(String name, String phoneNum, int age, String email) {
+    public User(String name, String phoneNum, int age, String email) throws InputException {
 
         setName(name);
         setPhoneNum(phoneNum);
@@ -102,7 +102,7 @@ public class User implements Usable {
     public void buyTickets(Event e) throws EventUnavailableException {
 
         if(!e.isAvailable())
-            throw new EventUnavailableExcetion(e);
+            throw new EventUnavailableException(e);
 
         /*Payment Activity*/
         System.out.println("-----------------------------------------------------------------------------------------------");

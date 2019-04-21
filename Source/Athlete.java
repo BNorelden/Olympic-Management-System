@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
-public class Athlete extends Users {
+public class Athlete extends User {
 
 	private String country;
 	private char gender;
 	private ArrayList<String> sport;
-	private AtheleteSchedule schedule;
+	private AthleteSchedule schedule;
     
     private EventSchedule eventSchedule;
 
@@ -17,7 +17,7 @@ public class Athlete extends Users {
 		setGender(gender);
         setSports(sport);
         
-        schedule = new AtheleteSchedule();
+        schedule = new AthleteSchedule();
         eventSchedule = EventSchedule.getInstance();
         
 	}
@@ -47,25 +47,29 @@ public class Athlete extends Users {
 	}
 
 	public String getCountry() {
+
 		return country;
 	}
 
 	public char getGender() {
+
 		return gender;
 	}
 
-	 public ArrayList<String> getSports() {
+	public ArrayList<String> getSports() {
+
 		return sport;
 	}
 
-	public AtheleteSchedule checkSchedule() {
-		return schedule;
+	public ArrayList<Event> checkSchedule() {
+
+		return schedule.getEvents();
 	}
 
 	public void scheduleAutograph(String name, String venue, int startDay, int startMonth, int startHr, int startMin,
         int endDay, int endMonth, int endHr, int endMin, int year, String zone, int seats) throws InputException, TimeConflictException {
         
-        Event e = new Event(name, null, 'S', venue, startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, year, zone, 0, seats);
+        Event e = new Event(name, "", 'S', venue, startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, year, zone, 0, seats);
         e.addParticipant(this);
         bookEvent(e);
         eventSchedule.addEvent(e);
@@ -83,40 +87,44 @@ public class Athlete extends Users {
 	public void updateAutograph(Event e, String venue, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone) {
         
         e.setVenue(venue);
-		e.setStartDate(startDay, startMonth, year);
-        e.setStartTime(startHr, startMin, zone);
-        e.setEndDate(endDay, endMonth, year);
-        e.setEndTime(endHr, endMin, zone);
+		e.setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
-        String startDateTime = e.getStartDate().format(formatter);
-        String endDateTime = e.getEndDate().format(formatter);
+        String startDateTime = e.getStartDateTime().format(formatter);
+        String endDateTime = e.getEndDateTime().format(formatter);
         eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held at " + venue + " from " + startDateTime + " -- " + endDateTime);
         
 	}
 	
 	public void updateAutograph(Event e, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone) {
 		
-        e.setStartDate(startDay, startMonth, year);
-        e.setStartTime(startHr, startMin, zone);
-        e.setEndDate(endDay, endMonth, year);
-        e.setEndTime(endHr, endMin, zone);
+        e.setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
-		String startDateTime = e.getStartDate().format(formatter);
-		String endDateTime = e.getEndDate().format(formatter);
+		String startDateTime = e.getStartDateTime().format(formatter);
+		String endDateTime = e.getEndDateTime().format(formatter);
         eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held from " + startDateTime + " -- " + endDateTime);
         
-	}
+    }
+    
+    public void updateAutograph(Event e, int startDay, int startMonth, int endDay, int endMonth, int year) {
+
+        e.setDateTime(startDay, startMonth, endDay, endMonth, year);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
+		String startDateTime = e.getStartDateTime().format(formatter);
+		String endDateTime = e.getEndDateTime().format(formatter);
+        eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held from " + startDateTime + " -- " + endDateTime);
+
+    }
 
 	public void updateAutograph(Event e, int startHr, int startMin, int endHr, int endMin, String zone) {
         
-        e.setStartTime(startHr, startMin, zone);
-        e.setEndDate(endDay, endMonth, year);
+        e.setDateTime(startHr, startMin, endHr, endMin, zone);
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm z");
-        String startTime = e.getStartDate().format(formatter);
-        String endTime = e.getEndDate().format(formatter);
+        String startTime = e.getStartDateTime().format(formatter);
+        String endTime = e.getEndDateTime().format(formatter);
         eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held from " + startTime + " -- " + endTime + ".");
         
 	}

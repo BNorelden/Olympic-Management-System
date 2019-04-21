@@ -15,17 +15,14 @@ public class Event {
     
     private ArrayList<Athlete> participant;
     
-    public  Event(String name, String category, char type, String venue, int startDay, int startMonth, int startHr, int startMin,
+    public Event(String name, String category, char type, String venue, int startDay, int startMonth, int startHr, int startMin,
         int endDay, int endMonth, int endHr, int endMin, int year, String zone, float price, int seats) throws InputException{
         
         setName(name);
         setCat(category);
         setType(type);
         setVenue(venue);
-        setStartDate(startDay, startMonth, year);
-        setStartTime(startHr, startMin, zone);
-        setEndDate(endDay, endMonth, year);
-        setEndTime(endHr, endMin, zone);
+        setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
         setPrice(price);
         setSeats(seats);
 
@@ -37,7 +34,7 @@ public class Event {
 
 		for(int i = 0; i < name.length(); i++) {
 			char character = name.charAt(i);
-			if(character != ' ' && (character < '0' || (character > '9' && character < 'A') ||
+			if(character != ' ' && character != '\'' && (character < '0' || (character > '9' && character < 'A') ||
 			(character > 'Z' && character < 'a') || character > 'z'))
 				throw new InputException("Event names are not allowed to contain special characters!");
 		}
@@ -69,40 +66,55 @@ public class Event {
         this.venue = venue;
         
     }
-		
-	public void setStartDate(int startDay, int startMonth, int year) {
-            
-        String date = startDay + "/" + startMonth + "/" + year;
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy");
-			
-        startDateTime = ZonedDateTime.parse(date, format);
+
+    public void setDateTime(int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, String zone, int year) {
+
+        String date, time;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:m z");
         
+        date = startDay + "/" + startMonth + "/" + year;
+        time = startHr + ":" + startMin + " " + zone;
+
+        startDateTime = ZonedDateTime.parse(date + " " + time, format);
+
+        date = endDay + "/" + endMonth + "/" + year;
+        time = endHr + ":" + endMin + " " + zone;
+
+        endDateTime = ZonedDateTime.parse(date + " " + time, format);
+
     }
-    
-    public void setStartTime(int startHr, int startMin, String zone) {
 
-        String time = startHr + ":" + startMin + " " + zone;
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("H:mm z");
+    public void setDateTime(int startDay, int startMonth, int endDay, int endMonth, int year) {
 
-        startDateTime = ZonedDateTime.parse(time, format);
-
-    }
-
-	public void setEndDate(int endDay, int endMonth, int year) {
+        String date, time;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:m z");
         
-        String date = endDay + "/" + endMonth + "/" + year;
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy");
+        date = startDay + "/" + startMonth + "/" + year;
+        time = startDateTime.format(DateTimeFormatter.ofPattern("H:m z"));
 
-        endDateTime = ZonedDateTime.parse(date, format);
-            
+        startDateTime = ZonedDateTime.parse(date + " " + time, format);
+
+        date = endDay + "/" + endMonth + "/" + year;
+        time = endDateTime.format(DateTimeFormatter.ofPattern("H:m z"));
+
+        endDateTime = ZonedDateTime.parse(date + " " + time, format);
+
     }
-    
-    public void setEndTime(int endHr, int endMin, String zone) {
 
-        String time = endHr + ":" + endMin + " " + zone;
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("H:mm z");
+    public void setDateTime(int startHr, int startMin, int endHr, int endMin, String zone) {
 
-        endDateTime = ZonedDateTime.parse(time, format);
+        String date, time;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:m z");
+        
+        date = startDateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy"));
+        time = startHr + ":" + startMin + " " + zone;
+
+        startDateTime = ZonedDateTime.parse(date + " " + time, format);
+
+        date = endDateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy"));
+        time = endHr + ":" + endMin + " " + zone;
+
+        endDateTime = ZonedDateTime.parse(date + " " + time, format);
 
     }
 		
@@ -143,7 +155,7 @@ public class Event {
     
     public void addParticipant(Athlete newAthlete) {
 
-        participant.add(newUser);
+        participant.add(newAthlete);
 
     }
         
@@ -172,12 +184,12 @@ public class Event {
         return venue;
     }
     
-    public ZonedDateTime getStartDate() {
+    public ZonedDateTime getStartDateTime() {
 
         return startDateTime;
     }
 
-    public ZonedDateTime getEndDate() {
+    public ZonedDateTime getEndDateTime() {
         
         return endDateTime;
     }
@@ -192,7 +204,7 @@ public class Event {
         return numSeats;
     }
     
-    public ArrayList<String> getParticipants() {
+    public ArrayList<Athlete> getParticipants() {
 
         return participant;
     }

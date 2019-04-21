@@ -1,6 +1,5 @@
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 
 class Schedule {
 
@@ -34,9 +33,14 @@ class Schedule {
 
     }
 
-    public ArrayList searchType(char type) {
+    public ArrayList<Event> getEvents() {
 
-        ArrayList result = new ArrayList<Event>();
+        return event;
+    }
+
+    public ArrayList<Event> searchType(char type) {
+
+        ArrayList<Event> result = new ArrayList<Event>();
 
         for(int i = 0; i < event.size(); i++) {
             Event e = event.get(i);
@@ -51,13 +55,14 @@ class Schedule {
 
         Event second;
         int hoursApart = 1;
-        String firstStartTime = first.getStartDateTime().minusHours(hoursApart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-        String firstEndTime = first.getEndDateTime().plusHours(hoursApart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String firstStartTime = first.getStartDateTime().minusHours(hoursApart).format(formatter);
+        String firstEndTime = first.getEndDateTime().plusHours(hoursApart).format(formatter);
 
         for(int i = 0; i < event.size(); i++) {
             second = event.get(i);
-            String secondStartTime = second.getStartDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-            String secondEndTime = second.getEndDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+            String secondStartTime = second.getStartDateTime().format(formatter);
+            String secondEndTime = second.getEndDateTime().format(formatter);
             if(firstEndTime.compareTo(secondStartTime) > 0 && firstStartTime.compareTo(secondEndTime) < 0)
                 return second;
         }
@@ -86,7 +91,7 @@ class EventSchedule extends Schedule {
 
         //Inform security of award ceremony scheduled
         System.out.println("-------------------------------------------------------------------------------------------------");
-        System.out.println("Security has been notified of " + ceremony);
+        System.out.println("Security has been notified of " + ceremony.getName());
         System.out.println("-------------------------------------------------------------------------------------------------");
         //Inform security of award ceremony scheduled
 
