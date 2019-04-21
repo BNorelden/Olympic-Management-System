@@ -21,6 +21,10 @@
         <activity android:name=".activityOne"></activity>
         <activity android:name=".activityTwo"></activity>
         <activity android:name=".activityThree"></activity>
+        <activity android:name=".popUpDynamic"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity android:name=".PurchaseTic" />
+
     </application>
 
 </manifest>

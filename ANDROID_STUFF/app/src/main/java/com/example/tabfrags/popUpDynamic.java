@@ -6,11 +6,15 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,6 +25,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.support.constraint.Constraints.TAG;
 import static com.example.tabfrags.tab2Event.swapS;
@@ -33,26 +41,34 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
     TextView tView;
     Button b2;
     String holds = swapS;
+    EditText etext;
+    ConstraintLayout cL;
+    ConstraintLayout.LayoutParams p;
+    DocumentReference fsref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_dynamic);
+        cL = findViewById(R.id.cL);
+        p = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-         tView = findViewById(R.id.tView);
-         b2 = findViewById(R.id.b2);
-         b2.setOnClickListener(this);
+        tView = findViewById(R.id.tView);
+        b2 = findViewById(R.id.b2);
+        b2.setText("Purchase");
+        b2.setOnClickListener(this);
+        etext = findViewById(R.id.eText);
 
-        DisplayMetrics dm =  new DisplayMetrics();
+        DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*0.85), (int)(height*0.85));
+        getWindow().setLayout((int) (width * 0.85), (int) (height * 0.85));
 
 
-
+        // final DocumentReference fsref = fs.collection("EVENTS").document(holds); //works
         fs = FirebaseFirestore.getInstance();
 
 
@@ -76,15 +92,14 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
 
 
         //DocumentReference fsref =  fs.collection("EVENTS").document();
-       // CollectionReference fsc = fs.collection("EVENTS");
-        DocumentReference fsref =  fs.collection("EVENTS").document(holds); //works
+        // CollectionReference fsc = fs.collection("EVENTS");
+        fsref = fs.collection("EVENTS").document(holds); //works
 
         fsref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
 
                     //(String name, String category, char type, String venue, int startDay, int startMonth, int startHr, int startMin,
@@ -109,14 +124,6 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
                     float price = parseFloat(doc.getString("price"));
                     int seats = parseInt(doc.getString("seats"));
 
-                   // Event test1 = new Event(name, cat, t , venue, startDay, startMonth , startHr, startMin, endDay, endMonth, endHr, endMin, year, zone, price, seats);
-
-                  /*  Event test1 = new Event(doc.getString("event Name"), doc.getString("category"), t , doc.getString("venue"), parseInt(doc.getString("startDay")),
-                            parseInt(doc.getString("startMonth")), parseInt(doc.getString("startHr")), parseInt(doc.getString("startMin")), parseInt(doc.getString("endDay")),
-                            parseInt(doc.getString("endMonth")), parseInt(doc.getString("endHr")), parseInt(doc.getString("endMin")), parseInt(doc.getString("year")),
-                            doc.getString("zone"), parseFloat(doc.getString("price")), parseInt(doc.getString("seats")) );
-                            */
-
 
                     StringBuilder data = new StringBuilder("");
 
@@ -125,10 +132,10 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
                     data.append("\nCat: ").append(cat);
                     data.append("\nType: ").append(t);
                     data.append("\nVenue: ").append(venue);
-                    data.append("\nStart Date: ").append(startMonth+"/"+startDay+"/"+year);
-                    data.append("\nStart Time: ").append(startHr +":"+ startMin +" "+ zone);
-                    data.append("\nEnd Date: ").append(endMonth+"/"+endDay+"/"+year);
-                    data.append("\nEnd Time: ").append(endHr +":"+ endMin +" "+ zone);
+                    data.append("\nStart Date: ").append(startMonth + "/" + startDay + "/" + year);
+                    data.append("\nStart Time: ").append(startHr + ":" + startMin + " " + zone);
+                    data.append("\nEnd Date: ").append(endMonth + "/" + endDay + "/" + year);
+                    data.append("\nEnd Time: ").append(endHr + ":" + endMin + " " + zone);
                     data.append("\nPrice: ").append(price);                                               // Works beautifully but haven't tested it dynamically
                     data.append("\nseats: ").append(seats);
 
@@ -136,30 +143,77 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
                     tView.setText(data.toString());
 
 
-
                 }
+              /*  etext = new EditText(getApplicationContext());
+                etext.setPadding(0,100,500,0);
+                etext.setLayoutParams(p);
+                etext.getLayoutParams().width=500;
+                cL.addView(etext); */
             }
         });
 
 
-       // readSingleContact();
+        // readSingleContact();
         //readAll();
     }
 
 
-
-
-
     @Override
-    public void onClick(View v){
+    public void onClick(View v) {
 
-        if (v.getId()==R.id.b2){
+        if (v.getId() == R.id.b2) {
 
-            Intent intent = new Intent(popUpDynamic.this, PurchaseTic.class);
-            startActivity(intent);
+            // Intent intent = new Intent(popUpDynamic.this, PurchaseTic.class);
+            // startActivity(intent);
+            fsref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+                Map<String, Object> seatsdec = new HashMap<>();
+
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                    String ticcounts = etext.getText().toString(); //input to string
+                    int ticcount = parseInt(ticcounts);             // input string to int
+                    if (task.isSuccessful()) {
+
+                        DocumentSnapshot doc = task.getResult();
+                        // make a dynamic button to confirm and edit text for amount
+
+
+                        int seatsint = parseInt(doc.getString("seats"));
+                        if (ticcount > seatsint) {
+
+                            Toast.makeText(getApplicationContext(), "Cannot do that, not enough tickets",
+                                    Toast.LENGTH_LONG).show();
+                            etext.getText().clear();
+                        } else if (seatsint <= 0) {
+                            b2.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getApplicationContext(), "TICKETS ARE SOLD OUT",
+                                    Toast.LENGTH_LONG).show();
+
+                        } else {
+                            seatsint = seatsint - ticcount;
+                            String seatsf = Integer.toString(seatsint);
+                            seatsdec.put("seats", seatsf);
+
+                            Toast.makeText(getApplicationContext(), "Your purchased " + ticcount + " and there is " + seatsf + "Tickets left  !!!",
+                                    Toast.LENGTH_LONG).show();
+
+
+                            fsref.set(seatsdec, SetOptions.merge());
+                        }
+                    }
+
+                }
+            });
+
+
         }
 
     }
+
+
 
     private void readSingleContact(){
 

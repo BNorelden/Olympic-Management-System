@@ -1116,6 +1116,7 @@ id bottom
 id btn0
 id btnTEST
 id buttonPanel
+id cL
 id cancel_action
 id center
 id center_horizontal
@@ -1143,6 +1144,7 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
+id eText
 id edit_query
 id end
 id end_padder
@@ -1260,6 +1262,7 @@ id tView2
 id tView3
 id tView4
 id tView5
+id tViewDesc
 id tabMode
 id tabs
 id tag_transition_group

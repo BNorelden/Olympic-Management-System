@@ -1,6 +1,7 @@
 package com.example.riooms;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.util.TypedValue;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class eList {
 
+    static String swapS;
     String userId;
     FirebaseFirestore db;
 
@@ -47,6 +49,9 @@ public class eList {
                     //read each result, for each result create a card
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
+                        final String did = document.getId();
+                        //
+                        //swapS = did;
                         eventCards = new CardView(context1);
 
                         layoutparams = new LinearLayout.LayoutParams(
@@ -160,7 +165,7 @@ public class eList {
 
                         viewTicketsBtn = new Button(context1);
                         //viewTicketsBtn.setOnClickListener(this);
-                        viewTicketsBtn.setText("View Ticket!");
+                        viewTicketsBtn.setText("View Event!");
 
                         LinearLayout.LayoutParams btnLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                         btnLayout.setMargins(850, 270, 8, 8);
@@ -188,7 +193,14 @@ public class eList {
                             @Override
                             public void onClick(View v) {
 
-                                Toast.makeText(context1, "Button Works" + docID, Toast.LENGTH_LONG).show();
+                                swapS = did;
+                                Intent intent = new Intent(context1, popUpDynamic.class);
+                                //   Intent intent = new Intent(context1, PurchaseTic.class);
+
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // THIS is needed so it does not cause an error
+                                //startActivity(new Intent(context1,popUpDynamic.class));
+                                context1.startActivity(intent);
+                                //Toast.makeText(context1, "Button Works" + docID, Toast.LENGTH_LONG).show();
                                 //todo, the string docID works and is different for each card
                                 // todo can be used here to do the popup and display QR code
 

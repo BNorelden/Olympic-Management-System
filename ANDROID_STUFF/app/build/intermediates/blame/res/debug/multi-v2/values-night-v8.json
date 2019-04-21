@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/ven1101/Desktop/git_rep/Olympic-Management-System/ANDROID_STUFF/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "C:\\Users\\Bilal\\Documents\\GitHub\\Olympic-Management-System\\ANDROID_STUFF\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/667173845d8457fce208395ba9c1aba8/res/values-night-v8/values-night-v8.xml",
+                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\b1c7c71ece4508937168b7852bb8814f\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

@@ -128,7 +128,7 @@ public class ticketList {
                         timeText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
 
                         LinearLayout.LayoutParams timeLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                        timeLayout.setMargins(930,150,8,8);
+                        timeLayout.setMargins(870,150,8,8);
                         timeLayout.width = 750;
                         timeLayout.height = 175;
 
