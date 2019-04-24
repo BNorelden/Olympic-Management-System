@@ -61,11 +61,6 @@ public class userView extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-                    //mTextMessage.setVisibility(View.VISIBLE);
-
-                   // mTextMessage.setPadding(120,0,0,0);
-                   // mTextMessage.setText(R.string.title_home);
-                    // here goes the code for
                     return true;
                 case R.id.navigation_Filter:
 

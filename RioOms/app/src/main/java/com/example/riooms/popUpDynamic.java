@@ -165,11 +165,12 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
                             String seatsf = Integer.toString(seatsint);
                             seatsdec.put("seats", seatsf);
 
-                            Toast.makeText(getApplicationContext(), "Your purchased " + ticcount + " and there is " + seatsf + "Tickets left  !!!",
+                            Toast.makeText(getApplicationContext(), "Your purchased " + ticcount + " and there is " + seatsf + " Tickets left  !!!",
                                     Toast.LENGTH_LONG).show();
 
 
                             fsref.set(seatsdec, SetOptions.merge());
+                            finish();
                         }
                     }
 

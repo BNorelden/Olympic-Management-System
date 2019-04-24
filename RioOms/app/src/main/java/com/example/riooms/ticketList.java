@@ -8,6 +8,7 @@ package com.example.riooms;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -19,9 +20,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Map;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class ticketList {
 
@@ -40,7 +46,8 @@ public class ticketList {
 
         //FirebaseAuth mAuth;
         //FirebaseFirestore db = FirebaseFirestore.getInstance();
-        userId = currUserId;
+        userId="Bilal Norelden";
+        //userId = currUserId;
         db = FirebaseFirestore.getInstance();
         context1 = context;
 
@@ -51,8 +58,8 @@ public class ticketList {
         // only if ticket test works
         //CollectionReference TicketReference = db.collection(id);
         //todo test for toast message for empty ticket list
-        CollectionReference TicketReference = db.collection("USER").document(userId).collection("Ticket");
-
+        //CollectionReference TicketReference = db.collection("USER").document(userId).collection("Ticket");
+        CollectionReference TicketReference = db.collection("ATHLETE").document(userId).collection("Ticket");
         TicketReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -61,6 +68,8 @@ public class ticketList {
 
                     //read each result, for each result create a card
                     for(QueryDocumentSnapshot document : task.getResult()){
+
+
 
                         ticketCards = new CardView(context1);
 
@@ -85,6 +94,9 @@ public class ticketList {
                         ticketCards.setCardElevation(20);
 
                         String event = document.getString("event Name");
+                        DocumentReference ticket = document.getDocumentReference("ticket");
+                       // String event = ticket.getString("event Name");
+
 
                         eventName = new TextView(context1);
                         eventName.setLayoutParams(layoutparams);

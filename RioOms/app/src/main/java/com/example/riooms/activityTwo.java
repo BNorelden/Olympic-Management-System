@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class activityTwo extends AppCompatActivity {
     private TextView tt;
@@ -31,6 +32,8 @@ public class activityTwo extends AppCompatActivity {
         ticketList alist = new ticketList();
         alist.displayList(currUser,linearLayout, context);
         //tt = findViewById(R.id.tv1);
+
+
 
 
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(
@@ -76,5 +79,7 @@ public class activityTwo extends AppCompatActivity {
 
 
     }
+
+
 
 }

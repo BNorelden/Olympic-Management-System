@@ -63,39 +63,7 @@ public class activityOne extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
-/*
-         BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-                = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        Intent intent0 = new Intent(activityOne.this,userView.class);
-                        startActivity(intent0);
-
-                        return true;
-                    case R.id.navigation_Filter:
-                        // mTextMessage.setPadding(0,0,0,0);
-                        // mTextMessage.setVisibility(View.INVISIBLE);       // alone sets it always to invisible
-                        //setContentView(R.layout.tab3event); switch to frag tab
-                        //setContentView(R.id.Linear3);     //figure this out
-                        //inActivity.this, activityOne.class);
-                        // startActivity(intent);
-                        // mTextMessage.setText(R.string.title_Filter);
-                        //mTextMessage.setVisibility(View.INVISIBLE);
-                        // here goes the code for filter
-                        return true;
-                    case R.id.navigation_Tickets:
-
-                        return true;
-                    case R.id.navigation_notifications:
-
-                        return true;
-                }
-                return false;
-            }
-        }; */
 
 
 
