@@ -30,12 +30,12 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/Nm2"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Enter the name of the the Athlete" />
+                android:hint="Enter the name of the the athlete"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/PhNum"
@@ -46,12 +46,12 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/PhNum2"
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Enter the Phone Number" />
+                android:hint="Enter the phone number"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/Age"
@@ -62,12 +62,12 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/Age2"
+                android:id="@+id/age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Enter the age"
                 android:inputType="textPersonName"
-                android:text="Enter the Athlete Age"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -80,12 +80,12 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/Email2"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Enter the Athlete E-mail" />
+                android:hint="Enter the Email"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/Coun"
@@ -96,12 +96,12 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/Coun2"
+                android:id="@+id/country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Enter the Athlete country" />
+                android:hint="Enter the athlete's country"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/Gen"
@@ -112,33 +112,33 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/Gen2"
+                android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Enter the Athlete gender" />
+                android:hint="Enter the athlete's gender"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/Spor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sports"
+                android:text="Sport"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/Spor2"
+                android:id="@+id/sport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Enter the Athlete Sports" />
+                android:hint="Enter a sport"
+                android:inputType="textPersonName" />
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/SubmitBtn"
+        android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
