@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:id="@+id/Zne"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the name of the Event"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="36dp"
+                tools:layout_editor_absoluteY="599dp" />
+
+            <TextView
+                android:id="@+id/Category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="129dp" />
+
+            <EditText
+                android:id="@+id/cat"
+                android:layout_width="425dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Category"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="56dp"
+                tools:layout_editor_absoluteY="630dp" />
+
+            <TextView
+                android:id="@+id/Typ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="165dp" />
+
+            <EditText
+                android:id="@+id/type"
+                android:layout_width="429dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Type of event"
+                android:inputType="none|textPersonName"
+                tools:layout_editor_absoluteX="25dp"
+                tools:layout_editor_absoluteY="650dp" />
+
+            <TextView
+                android:id="@+id/Venue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Venue"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="65dp"
+                tools:layout_editor_absoluteY="225dp" />
+
+            <EditText
+                android:id="@+id/venue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Venue of event"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="669dp" />
+
+            <TextView
+                android:id="@+id/StrtDt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Date"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="157dp"
+                tools:layout_editor_absoluteY="339dp" />
+
+            <EditText
+                android:id="@+id/stday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Start Date"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="25dp"
+                tools:layout_editor_absoluteY="685dp" />
+
+            <TextView
+                android:id="@+id/StrtMth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Month"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="128dp"
+                tools:layout_editor_absoluteY="355dp" />
+
+            <EditText
+                android:id="@+id/stmonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Start Month"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="269dp"
+                tools:layout_editor_absoluteY="328dp" />
+
+            <TextView
+                android:id="@+id/StrtHr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Hour"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="65dp"
+                tools:layout_editor_absoluteY="301dp" />
+
+            <EditText
+                android:id="@+id/sthour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Start Hour"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="290dp" />
+
+            <TextView
+                android:id="@+id/StrtMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Minutes"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="117dp"
+                tools:layout_editor_absoluteY="364dp" />
+
+            <EditText
+                android:id="@+id/stmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Start Minutes"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/EndDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Day"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="379dp" />
+
+            <EditText
+                android:id="@+id/endday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the End Day"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/EndMnth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Month"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="121dp"
+                tools:layout_editor_absoluteY="451dp" />
+
+            <EditText
+                android:id="@+id/endmonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the End Month"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/EndHr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Hour"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="87dp"
+                tools:layout_editor_absoluteY="478dp" />
+
+            <EditText
+                android:id="@+id/endhour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the End Hour"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/EndMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Minutes"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="72dp"
+                tools:layout_editor_absoluteY="489dp" />
+
+            <EditText
+                android:id="@+id/endmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the End Minutes"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/Year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Year"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="51dp"
+                tools:layout_editor_absoluteY="442dp" />
+
+            <EditText
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Year"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/Zone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="56dp"
+                tools:layout_editor_absoluteY="498dp" />
+
+            <EditText
+                android:id="@+id/zone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Zone"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="574dp" />
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Price"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/Seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seats"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="112dp"
+                tools:layout_editor_absoluteY="554dp" />
+
+            <EditText
+                android:id="@+id/seats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the Seats"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Submit"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.988" />
+
+</android.support.constraint.ConstraintLayout>
