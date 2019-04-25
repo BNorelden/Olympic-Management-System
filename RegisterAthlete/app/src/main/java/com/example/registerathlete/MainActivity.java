@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String athleteName = name.getText().toString();
                 String phoneNum = phone.getText().toString();
                 int athleteAge = Integer.parseInt(age.getText().toString());
