@@ -34,15 +34,18 @@ public class ticketList {
     //FirebaseAuth mAuth;
     String userId;
     FirebaseFirestore db;
+    LinearLayout.LayoutParams layoutparams;
+    LinearLayout ticketLayout;
+    Context context1;
 
-    CardView ticketCards;
+    /*CardView ticketCards;
     Context context1;
     LinearLayout.LayoutParams layoutparams;
     TextView eventName, dateText, timeText, venueName, seatsText;
     LinearLayout ticketLayout;
-    Button viewTicketsBtn;
+    Button viewTicketsBtn;*/
 
-    public void displayList(String currUserId, View layout, Context context){
+    public void displayList(String currUserId, View layout, final Context context){
 
         //FirebaseAuth mAuth;
         //FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -60,6 +63,9 @@ public class ticketList {
         //todo test for toast message for empty ticket list
         //CollectionReference TicketReference = db.collection("USER").document(userId).collection("Ticket");
         CollectionReference TicketReference = db.collection("ATHLETE").document(userId).collection("Ticket");
+      //  CollectionReference TicketReferenceA = db.collection("ATHLETE").document(userId).collection("Ticket");
+      //  CollectionReference TicketReferenceE = db.collection("EMPLOYEE").document(userId).collection("Ticket");
+
         TicketReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -67,10 +73,14 @@ public class ticketList {
                 if(task.isSuccessful()){
 
                     //read each result, for each result create a card
-                    for(QueryDocumentSnapshot document : task.getResult()){
+                    for(QueryDocumentSnapshot document : task.getResult()) {
 
 
+                        displayTic tic = new displayTic();
+                        tic.dis(context1, document, ticketLayout);
+                    }
 
+/*
                         ticketCards = new CardView(context1);
 
                         layoutparams = new LinearLayout.LayoutParams(
@@ -199,7 +209,7 @@ public class ticketList {
                         //String qr = document.getId();
 
 
-                    } // end of for loop query
+                    } // end of for loop query*/
 
                 }
 

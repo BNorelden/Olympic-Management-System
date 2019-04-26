@@ -33,6 +33,10 @@
         <activity android:name="com.example.riooms.activityOne" />
         <activity android:name="com.example.riooms.activityTwo" />
         <activity android:name="com.example.riooms.activityThree" />
+        <activity
+            android:name="com.example.riooms.popUpDynamic"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name="com.example.riooms.PurchaseTic" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"

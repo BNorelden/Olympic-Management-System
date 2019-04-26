@@ -186,9 +186,9 @@ public class eList {
                                 eventCards.addView(eventName);
                                 eventCards.addView(venueName);
                                 eventCards.addView(dateText);
+                                eventCards.addView(timeTexte);
                                 eventCards.addView(dateTexte);
                                 eventCards.addView(timeText);
-                                eventCards.addView(timeTexte);
 
                                 eventCards.addView(seatsText);
                                 eventCards.addView(viewTicketsBtn);

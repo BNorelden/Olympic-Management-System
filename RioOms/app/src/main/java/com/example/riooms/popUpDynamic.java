@@ -41,6 +41,8 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
     Button b2;
     String holds = swapS;
     DocumentReference fsref;
+    CollectionReference ds;
+    String nameT,venueT,starthrT,startMinT,startDayT,startMonthT,endHrT,endMinT,endDayT,endMonthT;
     EditText etext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,11 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
 
         fs = FirebaseFirestore.getInstance();
 
-        CollectionReference ds = fs.collection("EVENTS");
+         ds = fs.collection("ATHLETE").document("Bilal Norelden").collection("Ticket");
+
+        //CollectionReference TicketReference = db.collection("USER").document(userId).collection("Ticket");
+
+
         fsref =  fs.collection("EVENTS").document(holds); //works
 
         fsref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -75,23 +81,34 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
 
 
                     String name = doc.getString("event Name");
+                    nameT = name;
                     String cat = doc.getString("category");
                     String type = doc.getString("type");
                     char t = type.charAt(0);
                     String venue = doc.getString("venue");
+                    venueT = venue;
                     String docID = doc.getId();
                     int startDay = parseInt(doc.getString("startDay"));
+                    startDayT = Integer.toString(startDay);
                     int startMonth = parseInt(doc.getString("startMonth"));
+                    startMonthT = Integer.toString(startMonth);
                     int startHr = parseInt(doc.getString("startHr"));
+                    starthrT = Integer.toString(startHr);
                     int startMin = parseInt(doc.getString("startMin"));
+                    startMinT = Integer.toString(startMin);
                     int endDay = parseInt(doc.getString("endDay"));
+                    endDayT = Integer.toString(endDay);
                     int endMonth = parseInt(doc.getString("endMonth"));
+                    endMonthT = Integer.toString(endMonth);
                     int endHr = parseInt(doc.getString("endHr"));
+                    endHrT = Integer.toString(endHr);
                     int endMin = parseInt(doc.getString("endMin"));
+                    endMinT = Integer.toString(endMin);
                     int year = parseInt(doc.getString("year"));
                     String zone = doc.getString("zone");
                     float price = parseFloat(doc.getString("price"));
                     int seats = parseInt(doc.getString("seats"));
+                    //ticsC = Integer.toString(seats);
 
 
                     StringBuilder data = new StringBuilder("");
@@ -128,6 +145,7 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
             fsref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 
                 Map<String, Object> seatsdec = new HashMap<>();
+                Map<String, Object> userTicket = new HashMap<>();
 
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
@@ -163,13 +181,35 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
                             b2.setVisibility(View.VISIBLE);
                             seatsint = seatsint - ticcount;
                             String seatsf = Integer.toString(seatsint);
+
                             seatsdec.put("seats", seatsf);
+
+                            userTicket.put("event Name", nameT);
+                            userTicket.put("venue", venueT);
+
+                            userTicket.put("startMonth", startMonthT);
+                            userTicket.put("startDay", startDayT);
+                            userTicket.put("startHr", starthrT);
+                            userTicket.put("startMin", startMinT);
+                            userTicket.put("endMonth", endMonthT);
+                            userTicket.put("endDay", endDayT);
+                            userTicket.put("endHr", endHrT);
+                            userTicket.put("endMin", endMinT);
+                            userTicket.put("Tickets", ticcounts);
+
+                            fsref.set(seatsdec, SetOptions.merge());
+
+                            ds.document(nameT).set(userTicket, SetOptions.merge());
 
                             Toast.makeText(getApplicationContext(), "Your purchased " + ticcount + " and there is " + seatsf + " Tickets left  !!!",
                                     Toast.LENGTH_LONG).show();
 
 
-                            fsref.set(seatsdec, SetOptions.merge());
+
+
+
+
+
                             finish();
                         }
                     }
@@ -234,39 +274,5 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
 
     }
 
-
-    private void readAll() {            //it should read all the documents and just get all Id's with a counter
-
-
-        fs.collection("EVENTS")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-
-                        String ya2 = "";
-                        int counter=0;
-
-                        if (task.isSuccessful()) {
-
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                counter++;
-
-
-                                ya2 = ya2 + " C:"+counter+" " + document.getId() + "\n";
-
-                                tView.setText(ya2);
-
-                            }
-
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-    }
 
 }
