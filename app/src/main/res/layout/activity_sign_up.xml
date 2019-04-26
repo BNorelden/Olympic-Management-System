@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signUp">
+    tools:context=".SignUp">
 
-    <ImageView
+    <ImageView android:contentDescription="@string/home_description"
         android:id="@+id/imageView"
         android:layout_width="377dp"
         android:layout_height="272dp"
@@ -63,11 +63,13 @@
                 android:baselineAligned="false"
                 android:ems="10"
                 android:hint="@string/name_prompt"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="o"/>
 
             <EditText
                 android:id="@+id/signup_email_field"
@@ -81,12 +83,14 @@
                 android:layout_marginBottom="359dp"
                 android:ems="10"
                 android:hint="@string/email_prompt"
+                android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="o" />
 
             <EditText
                 android:id="@+id/phone_field"
@@ -100,12 +104,14 @@
                 android:layout_marginBottom="279dp"
                 android:ems="10"
                 android:hint="@string/phone_prompt"
+                android:importantForAutofill="no"
                 android:inputType="phone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.394"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="o" />
 
             <EditText
                 android:id="@+id/age_field"
@@ -119,12 +125,14 @@
                 android:layout_marginBottom="199dp"
                 android:ems="10"
                 android:hint="@string/age_prompt"
+                android:importantForAutofill="no"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="o" />
 
             <EditText
                 android:id="@+id/signup_password_field"
@@ -138,12 +146,14 @@
                 android:layout_marginBottom="119dp"
                 android:ems="10"
                 android:hint="@string/password_prompt"
+                android:importantForAutofill="no"
                 android:inputType="textPassword"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="o" />
 
             <EditText
                 android:id="@+id/confirm_password_field"
@@ -157,11 +167,13 @@
                 android:layout_marginBottom="43dp"
                 android:ems="10"
                 android:hint="@string/confirm_password_prompt"
+                android:importantForAutofill="no"
                 android:inputType="textPassword"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="o" />
 
             <Button
                 android:id="@+id/register_action"
