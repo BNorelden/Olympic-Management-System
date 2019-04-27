@@ -67,8 +67,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     public void register() {
 
-        final String email, password, confirmPass, name, phoneNum;
-        final int age;
+        final String email, password, confirmPass, name, phoneNum, age;
 
         try {
             email = emailField.getText().toString();
@@ -76,7 +75,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             confirmPass = confirmPassField.getText().toString();
             name = nameField.getText().toString();
             phoneNum = phoneField.getText().toString();
-            age = Integer.parseInt(ageField.getText().toString());
+            age = ageField.getText().toString();
 
             if (password.equals(confirmPass)) {
                 try {

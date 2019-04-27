@@ -1,18 +1,20 @@
 package Source;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
 public class Athlete extends User {
 
-	private String country;
-	private char gender;
+	private String country, gender;
 	private ArrayList<String> sport;
 	private AthleteSchedule schedule;
     
     private EventSchedule eventSchedule;
 
-	public Athlete(String name, String phoneNum, int age, String email, String country, char gender, ArrayList<String> sport) throws InputException {
+	public Athlete(String name, String phoneNum, String age, String email, String country, String gender, ArrayList<String> sport) throws InputException {
 
 		super(name, phoneNum, age, email);
 		setCountry(country);
@@ -30,9 +32,9 @@ public class Athlete extends User {
 
 	}
 
-	public void setGender(char gender) throws InputException {
+	public void setGender(String gender) throws InputException {
 		
-		if (gender != 'M' && gender != 'F')
+		if (!gender.equals("M") && !gender.equals("F"))
 			throw new InputException("Invalid option for gender!"); 
 		this.gender = gender;
 
@@ -53,7 +55,7 @@ public class Athlete extends User {
 		return country;
 	}
 
-	public char getGender() {
+	public String getGender() {
 
 		return gender;
 	}
@@ -68,10 +70,11 @@ public class Athlete extends User {
 		return schedule.getEvents();
 	}
 
-	public void scheduleAutograph(String name, String venue, int startDay, int startMonth, int startHr, int startMin,
-        int endDay, int endMonth, int endHr, int endMin, int year, String zone, int seats) throws InputException, TimeConflictException {
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	public void scheduleAutograph(String name, String venue, String startDay, String startMonth, String startHr, String startMin,
+								  String endDay, String endMonth, String endHr, String endMin, String year, String zone, String seats) throws InputException, TimeConflictException {
         
-        Event e = new Event(name, "", 'S', venue, startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, year, zone, 0, seats);
+        Event e = new Event(name, "", "S", venue, startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, year, zone, "0", seats);
         e.addParticipant(this);
         bookEvent(e);
         eventSchedule.addEvent(e);
@@ -86,7 +89,8 @@ public class Athlete extends User {
 
     }
     
-	public void updateAutograph(Event e, String venue, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone) {
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	public void updateAutograph(Event e, String venue, String startDay, String startMonth, String startHr, String startMin, String endDay, String endMonth, String endHr, String endMin, String year, String zone) {
         
         e.setVenue(venue);
 		e.setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
@@ -97,41 +101,9 @@ public class Athlete extends User {
         eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held at " + venue + " from " + startDateTime + " -- " + endDateTime);
         
 	}
-	
-	public void updateAutograph(Event e, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone) {
-		
-        e.setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
-		String startDateTime = e.getStartDateTime().format(formatter);
-		String endDateTime = e.getEndDateTime().format(formatter);
-        eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held from " + startDateTime + " -- " + endDateTime);
-        
-    }
     
-    public void updateAutograph(Event e, int startDay, int startMonth, int endDay, int endMonth, int year) {
-
-        e.setDateTime(startDay, startMonth, endDay, endMonth, year);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
-		String startDateTime = e.getStartDateTime().format(formatter);
-		String endDateTime = e.getEndDateTime().format(formatter);
-        eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held from " + startDateTime + " -- " + endDateTime);
-
-    }
-
-	public void updateAutograph(Event e, int startHr, int startMin, int endHr, int endMin, String zone) {
-        
-        e.setDateTime(startHr, startMin, endHr, endMin, zone);
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm z");
-        String startTime = e.getStartDateTime().format(formatter);
-        String endTime = e.getEndDateTime().format(formatter);
-        eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held from " + startTime + " -- " + endTime + ".");
-        
-	}
-    
-    public void bookEvent(Event e) throws InputException, TimeConflictException {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+	public void bookEvent(Event e) throws InputException, TimeConflictException {
 		
         schedule.addEvent(e);
         

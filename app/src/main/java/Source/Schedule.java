@@ -1,5 +1,9 @@
 package Source;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
@@ -13,6 +17,7 @@ class Schedule {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void addEvent(Event e) throws InputException, TimeConflictException {
 
         if(event.contains(e))
@@ -40,32 +45,32 @@ class Schedule {
         return event;
     }
 
-    public ArrayList<Event> searchType(char type) {
+    public ArrayList<Event> searchType(String type) {
 
         ArrayList<Event> result = new ArrayList<Event>();
 
         for(int i = 0; i < event.size(); i++) {
             Event e = event.get(i);
-            if(e.getType() == type)
+            if(e.getType().equals(type))
                 result.add(e);
         }
 
         return result;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public Event conflict(Event first) {
 
         Event second;
         int hoursApart = 1;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        String firstStartTime = first.getStartDateTime().minusHours(hoursApart).format(formatter);
-        String firstEndTime = first.getEndDateTime().plusHours(hoursApart).format(formatter);
+        ZonedDateTime firstStartTime = first.getStartDateTime().minusHours(hoursApart);
+        ZonedDateTime firstEndTime = first.getEndDateTime().plusHours(hoursApart);
 
         for(int i = 0; i < event.size(); i++) {
             second = event.get(i);
-            String secondStartTime = second.getStartDateTime().format(formatter);
-            String secondEndTime = second.getEndDateTime().format(formatter);
-            if(firstEndTime.compareTo(secondStartTime) > 0 && firstStartTime.compareTo(secondEndTime) < 0)
+            ZonedDateTime secondStartTime = second.getStartDateTime();
+            ZonedDateTime secondEndTime = second.getEndDateTime();
+            if(firstEndTime.isAfter(secondStartTime) && firstStartTime.isBefore(secondEndTime))
                 return second;
         }
 

@@ -1,5 +1,8 @@
 package Source;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 
@@ -7,15 +10,15 @@ class Employee extends User {
 
     private EventSchedule eventSchedule;
 
-    public Employee(String name, String phoneNum, int age, String email) throws InputException {
+    public Employee(String name, String phoneNum, String age, String email) throws InputException {
 
         super(name, phoneNum, age, email);
         eventSchedule = EventSchedule.getInstance();
 
     }
 
-	public void registerAthlete(String name, String phoneNum, int age, String email, String password, String country,
-        char gender, ArrayList<String> sport) throws InputException {
+	public void registerAthlete(String name, String phoneNum, String age, String email, String password, String country,
+        String gender, ArrayList<String> sport) throws InputException {
       
         Athlete a = new Athlete(name, phoneNum, age, email, country, gender, sport);
         /*Add to database*/
@@ -28,8 +31,9 @@ class Employee extends User {
         
     }
 	
-    public void schedule(String name, String category, char type, String venue, int startDay, int startMonth, int startHr, int startMin,
-        int endDay, int endMonth, int endHr, int endMin, int year, String zone, float price, int seats, ArrayList<Athlete> athlete) throws InputException, TimeConflictException {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void schedule(String name, String category, String type, String venue, String startDay, String startMonth, String startHr, String startMin,
+                         String endDay, String endMonth, String endHr, String endMin, String year, String zone, String price, String seats, ArrayList<Athlete> athlete) throws InputException, TimeConflictException {
     
         Event e = new Event(name, category, type, venue, startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, year, zone, price, seats);
         eventSchedule.addEvent(e);
@@ -45,11 +49,12 @@ class Employee extends User {
 
         eventSchedule.informUsers(name + " was just scheduled! It is being held at " + venue + " from " + startTime + " -- " + endTime + ". Check it out!");
 
-        if(type == 'C')
+        if(type.equals("C"))
             eventSchedule.notifySecurity(e);
         
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void cancelEvent(Event e) throws InputException {
 
         ArrayList<Athlete> participants = e.getParticipants();
@@ -65,7 +70,8 @@ class Employee extends User {
 
     }
       
-	public void update(Event e, String venue, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone) {
+	@RequiresApi(api = Build.VERSION_CODES.O)
+    public void update(Event e, String venue, String startDay, String startMonth, String startHr, String startMin, String endDay, String endMonth, String endHr, String endMin, String year, String zone) {
 
         e.setVenue(venue);
         e.setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
@@ -75,42 +81,6 @@ class Employee extends User {
         String endDateTime = e.getEndDateTime().format(format);
 
         eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held at " + venue + " from " + startDateTime + " -- " + endDateTime);
-
-    }
-
-    public void update(Event e, int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, int year, String zone) {
-
-        e.setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
-
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
-        String startDateTime = e.getStartDateTime().format(format);
-        String endDateTime = e.getEndDateTime().format(format);
-
-        eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held from " + startDateTime + " -- " + endDateTime);
-
-    }
-
-    public void update(Event e, int startDay, int startMonth, int endDay, int endMonth, int year) {
-
-        e.setDateTime(startDay, startMonth, endDay, endMonth, year);
-
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy");
-        String startTime = e.getStartDateTime().format(format);
-        String endTime = e.getEndDateTime().format(format);
-
-        eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held from " + startTime + " -- " + endTime);
-
-    }
-
-    public void update(Event e, int startHr, int startMin, int endHr, int endMin, String zone) {
-
-        e.setDateTime(startHr, startMin, endHr, endMin, zone);
-
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("H:mm z");
-        String startTime = e.getStartDateTime().format(format);
-        String endTime = e.getEndDateTime().format(format);
-
-        eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held from " + startTime + " -- " + endTime);
 
     }
 

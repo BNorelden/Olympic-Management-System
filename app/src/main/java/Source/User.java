@@ -4,13 +4,10 @@ import java.util.ArrayList;
 
 public class User implements Usable {
 
-    protected String name;
-    protected String phoneNum;
-    protected int age;
-    protected String email;
+    protected String name, phoneNum, age, email;
     protected ArrayList<Ticket> ticket;
 
-    public User(String name, String phoneNum, int age, String email) throws InputException {
+    public User(String name, String phoneNum, String age, String email) throws InputException {
 
         setName(name);
         setPhoneNum(phoneNum);
@@ -53,9 +50,9 @@ public class User implements Usable {
     }
 
     @Override
-    public void setAge(int age) throws InputException {
+    public void setAge(String age) throws InputException {
 
-        if(age <= 0)
+        if(Integer.parseInt(age) <= 0)
             throw new InputException("Age must be greater than zero!");
         this.age = age;
 
@@ -81,7 +78,7 @@ public class User implements Usable {
     }
 
     @Override
-    public int getAge() {
+    public String getAge() {
 
         return age;
     }

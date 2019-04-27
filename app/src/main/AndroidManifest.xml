@@ -21,6 +21,7 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".HomeActivity"/>
         <activity android:name=".SignUp" />
         <activity android:name=".MainActivity">
             <intent-filter>

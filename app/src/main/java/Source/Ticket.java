@@ -1,5 +1,8 @@
 package Source;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.time.format.DateTimeFormatter;
 
 public class Ticket {
@@ -25,7 +28,8 @@ public class Ticket {
         
 	}
 	
-	public void displayTicket() {
+	@RequiresApi(api = Build.VERSION_CODES.O)
+    public void displayTicket() {
 
         //Invoke activity to pop-up ticket to user
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");

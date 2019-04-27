@@ -1,24 +1,23 @@
 package Source;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.*;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event {
 	
-    private	String name;
-    private String category;
-    private char type;
-    private String venue;
+    private	String name, category, type, venue, price, numSeats;
     private ZonedDateTime startDateTime;
     private ZonedDateTime endDateTime;
-    private float price;
-    private int numSeats;
     
     private ArrayList<Athlete> participant;
     
-    public Event(String name, String category, char type, String venue, int startDay, int startMonth, int startHr, int startMin,
-        int endDay, int endMonth, int endHr, int endMin, int year, String zone, float price, int seats) throws InputException{
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Event(String name, String category, String type, String venue, String startDay, String startMonth, String startHr, String startMin,
+                 String endDay, String endMonth, String endHr, String endMin, String year, String zone, String price, String seats) throws InputException{
         
         setName(name);
         setCat(category);
@@ -32,14 +31,8 @@ public class Event {
 
     }
 	
-	public void setName(String name) throws InputException { 
+	public void setName(String name) {
 
-		for(int i = 0; i < name.length(); i++) {
-			char character = name.charAt(i);
-			if(character != ' ' && character != '\'' && (character < '0' || (character > '9' && character < 'A') ||
-			(character > 'Z' && character < 'a') || character > 'z'))
-				throw new InputException("Event names are not allowed to contain special characters!");
-		}
         this.name = name;
         
 	}
@@ -55,9 +48,9 @@ public class Event {
 
     }
 	
-    public void setType(char type) throws InputException{
+    public void setType(String type) throws InputException{
 
-        if(type != 'E' && type != 'C' && type != 'S')
+        if(!type.equals("E") && type.equals("C") && type.equals("S"))
             throw new InputException("Type must be either: competition event (E), award ceremony (C), or autograph session (S)!");
         this.type = type;
     
@@ -69,88 +62,53 @@ public class Event {
         
     }
 
-    public void setDateTime(int startDay, int startMonth, int startHr, int startMin, int endDay, int endMonth, int endHr, int endMin, String zone, int year) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setDateTime(String startDay, String startMonth, String startHr, String startMin, String endDay, String endMonth, String endHr, String endMin, String zone, String year) {
 
-        String date, time;
+        String dateTime;
         DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:m z");
         
-        date = startDay + "/" + startMonth + "/" + year;
-        time = startHr + ":" + startMin + " " + zone;
+        dateTime = startDay + "/" + startMonth + "/" + year + " " + startHr + ":" + startMin + " " + zone;
 
-        startDateTime = ZonedDateTime.parse(date + " " + time, format);
+        startDateTime = ZonedDateTime.parse(dateTime, format);
 
-        date = endDay + "/" + endMonth + "/" + year;
-        time = endHr + ":" + endMin + " " + zone;
+        dateTime = endDay + "/" + endMonth + "/" + year + " " + endHr + ":" + endMin + " " + zone;
 
-        endDateTime = ZonedDateTime.parse(date + " " + time, format);
-
-    }
-
-    public void setDateTime(int startDay, int startMonth, int endDay, int endMonth, int year) {
-
-        String date, time;
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:m z");
-        
-        date = startDay + "/" + startMonth + "/" + year;
-        time = startDateTime.format(DateTimeFormatter.ofPattern("H:m z"));
-
-        startDateTime = ZonedDateTime.parse(date + " " + time, format);
-
-        date = endDay + "/" + endMonth + "/" + year;
-        time = endDateTime.format(DateTimeFormatter.ofPattern("H:m z"));
-
-        endDateTime = ZonedDateTime.parse(date + " " + time, format);
-
-    }
-
-    public void setDateTime(int startHr, int startMin, int endHr, int endMin, String zone) {
-
-        String date, time;
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:m z");
-        
-        date = startDateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy"));
-        time = startHr + ":" + startMin + " " + zone;
-
-        startDateTime = ZonedDateTime.parse(date + " " + time, format);
-
-        date = endDateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy"));
-        time = endHr + ":" + endMin + " " + zone;
-
-        endDateTime = ZonedDateTime.parse(date + " " + time, format);
+        endDateTime = ZonedDateTime.parse(dateTime, format);
 
     }
 		
-    public void setPrice(float price) throws InputException{
+    public void setPrice(String price) {
 
-        if(price < 0)
-            throw new InputException("Price cannot be a negative value!");
         this.price = price;
 
     }
 
-    public void setSeats(int seats) throws InputException {
+    public void setSeats(String seats) {
 
-        if(seats < 0)
-            throw new InputException("Number of seats cannot be negative!");
         this.numSeats = seats;
 
     }
     
     public void incSeats() {
 
-        numSeats++;
+        int num = Integer.parseInt(numSeats);
+
+        numSeats = Integer.toString(++num);
 
     }
 
     public void decSeats() {
         
-        numSeats--;
+        int num = Integer.parseInt(numSeats);
+
+        numSeats = Integer.toString(--num);
 
     }
 
     public Boolean isAvailable() {
         
-        if(numSeats == 0)
+        if(numSeats.equals("0"))
             return false;
         return true;
     }
@@ -177,7 +135,7 @@ public class Event {
         return category;
     }
     
-    public char getType() {
+    public String getType() {
 
         return type;
     }
@@ -196,12 +154,12 @@ public class Event {
         return endDateTime;
     }
     
-    public float getPrice() {
+    public String getPrice() {
 
         return price;
     }
         
-    public int getSeats() {
+    public String getSeats() {
 
         return numSeats;
     }

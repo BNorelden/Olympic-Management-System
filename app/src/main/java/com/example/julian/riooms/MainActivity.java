@@ -1,9 +1,11 @@
 package com.example.julian.riooms;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+import Source.Driver;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -93,20 +100,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 
+                            @RequiresApi(api = Build.VERSION_CODES.O)
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document = task.getResult();
 
-                                    if (document.exists()) {
-                                        //todo User View Activities
-                                        Toast.makeText(MainActivity.this, "User Logs In!", Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Log.d("Doc error", "error in finding doc");
+                                    try {
+                                        Driver.initUser(document);
+                                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                                    }
+                                    catch(Exception e) {
+                                        Toast.makeText(MainActivity.this, "Something went wrong. Please try again later. " + e, Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Log.d("Doc error", "Error in oncomplete doc listener");
+                                    Toast.makeText(MainActivity.this, "Something went wrong. Please try again later. ", Toast.LENGTH_LONG).show();
                                 }
 
                             }
@@ -121,13 +130,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document = task.getResult();
 
-                                    if (document.exists()) {
-                                        //todo toast that this works
-                                    } else {
-                                        Log.d("Doc error", "error in finding doc");
-                                    }
+                                    //todo toast that this works
                                 } else {
-                                    Log.d("Doc error", "Error in oncomplete doc listener");
+                                    Toast.makeText(MainActivity.this, "Something went wrong. Please try again later. ", Toast.LENGTH_LONG).show();
                                 }
 
                             }
@@ -142,13 +147,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document = task.getResult();
 
-                                    if (document.exists()) {
-                                        //todo toast that this works
-                                    } else {
-                                        Log.d("Doc error", "error in finding doc");
-                                    }
+                                    //todo toast that this works
                                 } else {
-                                    Log.d("Doc error", "Error in oncomplete doc listener");
+                                    Toast.makeText(MainActivity.this, "Something went wrong. Please try again later. ", Toast.LENGTH_LONG).show();
                                 }
 
                             }
