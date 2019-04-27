@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class tab1_home extends Fragment implements View.OnClickListener {
 
     Button signoutBtn;
+    Button openAct;
     private FirebaseAuth mAuth;
 
     @Override
@@ -26,7 +27,11 @@ public class tab1_home extends Fragment implements View.OnClickListener {
 
         signoutBtn = (Button) rootView.findViewById(R.id.signout);
 
+        openAct = (Button) rootView.findViewById(R.id.openActivity);
+
         signoutBtn.setOnClickListener(this);
+
+        openAct.setOnClickListener(this);
 
         return rootView;
     }
@@ -42,7 +47,7 @@ public class tab1_home extends Fragment implements View.OnClickListener {
         getActivity().finish();
 
         //testing if button could open up an activity on click
-        /*Intent intent = new Intent(getActivity(), signUp.class);
+        /*Intent intent = new Intent(getActivity(), employeeView.class);
         startActivity(intent);*/
 
 
@@ -58,6 +63,13 @@ public class tab1_home extends Fragment implements View.OnClickListener {
                 signout();
 
                 break;
+
+            /*case R.id.openActivity:
+
+                Intent intent = new Intent(getActivity(), employeeView.class);
+                startActivity(intent);
+
+                break;*/
 
         }
 

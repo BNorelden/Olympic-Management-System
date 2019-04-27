@@ -1,76 +1,94 @@
+/*
 package com.example.charley.riooms;
 
-import com.google.firebase.firestore.Exclude;
+import java.util.ArrayList;
 
-public class users implements user {
+public class users implements user{
 
-    private String Id;
-    //todo private String email;
-    private String pass;
-    private String name;
-    private String phoneNum;
-    private int age;
+    protected String name;
+    protected String phoneNum;
+    protected int age;
+    protected String email;
+    protected static int ticCount = 0;
+    ArrayList<Ticket> ticket;
 
-    //todo
-    //default constructor
-    //check if get uses this.
+    public users(String name, String phoneNum, int age, String email){
 
-    public users(){//no arg constructor needed
-    }
-
-    public users(String Id, String name, String phoneNum, int age){
-
-        this.Id = Id;
-        this.name = name;
-        this.phoneNum = phoneNum;
-        this.age = age;
+        setName(name);
+        setPhoneNum(phoneNum);
+        setAge(age);
+        setEmail(email);
 
     }
 
     @Override
-    public void setUserId(String Id) {
+    public void setName(String name) throws InputException {
 
-        this.Id = Id;
+        for(int i = 0; i < name.length(); i++){
 
-    }
+            char character = name.charAt(i);
 
-    @Override
-    public void setPassword(String pass) {
+            if(character != ' ' && (character < 'A' || (character > 'Z' && character < 'a' || character > 'z'))){
 
-        this.pass = pass;
+                throw new InputException("Names are not allowed to contain numbers or special characters!");
 
-    }
+            }
 
-    @Override
-    public void setName(String name) {
+        }
 
         this.name = name;
 
     }
 
     @Override
-    public void setPhoneNum(String phoneNum) {
+    public void setPhoneNum(String phoneNum) throws InputException{
+
+        if(phoneNum.length() != 10){
+
+            throw new InputException("Phone numbers must contain 10 digits!");
+
+        }
+
+        for(int i = 0; i < phoneNum.length(); i++){
+
+            char digit = phoneNum.charAt(i);
+
+            if(digit < '0' || digit > '9'){
+
+                throw new InputException("Invalid phone number");
+
+            }
+
+        }
 
         this.phoneNum = phoneNum;
 
     }
 
     @Override
-    public void setAge(int age) {
+    public void setAge(int age) throws InputException{
+
+        if(age <= 0){
+
+            throw new InputException("Age must be greater than zero!");
+
+        }
 
         this.age = age;
 
     }
 
     @Override
-    public void setTickets() {
+    public void setEmail(String email) throws InputException{
 
-    }
+        if(!email.matches("(.*)@(.*).com") && !email.matches("(.*)@(.*).net") && !email.matches("(.*)@(.*).org") && !email.matches("(.*)@(.*).edu") && !email.matches("(.*)@(.*).gov")){
 
-    @Override
-    //@Exclude to prevent access from firestore
-    public String getUserId() {
-        return Id;
+            throw new InputException("Invalid email format!");
+
+        }
+
+        this.email = email;
+
     }
 
     @Override
@@ -87,4 +105,45 @@ public class users implements user {
     public int getAge() {
         return age;
     }
+
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public ArrayList<Ticket> getTickets(){
+        return ticket;
+    }
+
+    @Override
+    public void buyTickets(Event e) throws EventUnavailableException{
+
+        if(!e.isAvailable()){
+
+            throw new EventUnavailableExcetion(e);
+
+        }
+
+        */
+/*Payment Activity*//*
+
+        ticCount++;
+
+        Ticket tic = new Ticket(ticCount, e);
+
+        ticket.add(tic);
+
+        //ticket.get(ticket.size() - 1).displayTicket();
+        tic.displayTicket();
+
+    }
+
+    @Override
+    public void cancelTicket(Ticket t){
+
+        ticket.remove(t);
+
+    }
 }
+*/
