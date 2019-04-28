@@ -33,7 +33,7 @@ public class FCMService extends FirebaseMessagingService {
         }
 
         // Check if message contains a notification payload.
-        /*if (remoteMessage.getNotification() != null) {
+        if (remoteMessage.getNotification() != null) {
 
             String title = remoteMessage.getNotification().getTitle();
             String nameField = remoteMessage.getNotification().getBody();
@@ -46,13 +46,13 @@ public class FCMService extends FirebaseMessagingService {
                     .setContentText(nameField)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setStyle(new NotificationCompat.BigTextStyle())
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.drawable.ic_action_mail)
                     .setAutoCancel(true);
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
             notificationManager.notify(0, builder.build());
-*/
+
 
         /*if(remoteMessage.getData() != null){
 
@@ -68,6 +68,7 @@ public class FCMService extends FirebaseMessagingService {
             NotificationManagerCompat managerCompat = new NotificationManagerCompat.(getApplication().getApplicationContext());
 
         }*/
+        }
 
 
 

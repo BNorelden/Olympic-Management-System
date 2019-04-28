@@ -170,6 +170,7 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
 
 
                             fsref.set(seatsdec, SetOptions.merge());
+                            finish();
                         }
                     }
 

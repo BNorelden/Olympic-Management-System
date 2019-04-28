@@ -15,9 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-public class activityOne extends AppCompatActivity {
+public class activityOneEmp extends AppCompatActivity {
     private TextView tt;
     LinearLayout linearLayout;
 
@@ -27,29 +26,40 @@ public class activityOne extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_one);
+        setContentView(R.layout.activity_one_emp);
 
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_emp);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        Intent intent0 = new Intent(activityOne.this, userView.class);
+                    case R.id.navigation_regAth:
+                        Intent intent0 = new Intent(activityOneEmp.this, empView.class);
                         startActivity(intent0);
+
+                        return true;
+                    case R.id.navigation_sched:
+
+
+                        Intent intent2 = new Intent(activityOneEmp.this,scheduleEvent.class);
+                        startActivity(intent2);
 
                         return true;
                     case R.id.navigation_Filter:
 
                         return true;
                     case R.id.navigation_Tickets:
-                        Intent intent2 = new Intent(activityOne.this,activityTwo.class);
-                        startActivity(intent2);
+
+                        Intent intent3 = new Intent(activityOneEmp.this,activityTwoEmp.class);
+                        startActivity(intent3);
+
                         return true;
                     case R.id.navigation_notifications:
-                        Intent intent3 = new Intent(activityOne.this,activityThree.class);
-                        startActivity(intent3);
+
+                        Intent intent4 = new Intent(activityOneEmp.this,activityThreeEmp.class);
+                        startActivity(intent4);
+
 
                         return true;
                 }
@@ -58,7 +68,7 @@ public class activityOne extends AppCompatActivity {
             }
         });
         Menu menu = navigation.getMenu();
-        MenuItem menuItem = menu.getItem(1);
+        MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
 
 /*
@@ -95,7 +105,7 @@ public class activityOne extends AppCompatActivity {
             }
         }; */
 
-        // Create the adapter that will return a fragment for each of the three
+// Create the adapter that will return a fragment for each of the three
 
         // primary sections of the activity.
 
@@ -112,8 +122,9 @@ public class activityOne extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-    }
 
+
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -155,8 +166,6 @@ public class activityOne extends AppCompatActivity {
             return 3;
         }
     }
-
-
 
 
 }

@@ -15,9 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-public class activityOne extends AppCompatActivity {
+public class activityOneAth extends AppCompatActivity {
     private TextView tt;
     LinearLayout linearLayout;
 
@@ -27,16 +26,16 @@ public class activityOne extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_one);
+        setContentView(R.layout.activity_one_ath);
 
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_ath);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent intent0 = new Intent(activityOne.this, userView.class);
+                        Intent intent0 = new Intent(activityOneAth.this, athView.class);
                         startActivity(intent0);
 
                         return true;
@@ -44,12 +43,20 @@ public class activityOne extends AppCompatActivity {
 
                         return true;
                     case R.id.navigation_Tickets:
-                        Intent intent2 = new Intent(activityOne.this,activityTwo.class);
+                        Intent intent2 = new Intent(activityOneAth.this,activityTwoAth.class);
                         startActivity(intent2);
                         return true;
                     case R.id.navigation_notifications:
-                        Intent intent3 = new Intent(activityOne.this,activityThree.class);
+                        Intent intent3 = new Intent(activityOneAth.this,activityThreeAth.class);
                         startActivity(intent3);
+
+                        return true;
+
+                    case R.id.navigation_autograph:
+
+                        Intent intent4 = new Intent(activityOneAth.this,scheduleAuto.class);
+                        startActivity(intent4);
+
 
                         return true;
                 }
@@ -112,8 +119,9 @@ public class activityOne extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-    }
 
+
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
