@@ -94,10 +94,9 @@ public class Athlete extends User {
         
         e.setVenue(venue);
 		e.setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
-        String startDateTime = e.getStartDateTime().format(formatter);
-        String endDateTime = e.getEndDateTime().format(formatter);
+
+        String startDateTime = e.getStartDateTime();
+        String endDateTime = e.getEndDateTime();
         eventSchedule.informUsers("Please be advised that one of our autograph sessions have changed! " + e.getName() + " is now being held at " + venue + " from " + startDateTime + " -- " + endDateTime);
         
 	}
@@ -115,6 +114,7 @@ public class Athlete extends User {
 
 	}
     
+	@RequiresApi(api = Build.VERSION_CODES.O)
 	public void requestFreeTicket(Event e) throws EventUnavailableException{
 
 		if(!e.isAvailable())

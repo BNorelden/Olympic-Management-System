@@ -43,9 +43,8 @@ class Employee extends User {
             a.bookEvent(e);
         }
 
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
-        String startTime = e.getStartDateTime().format(format);
-        String endTime = e.getEndDateTime().format(format);
+        String startTime = e.getStartDateTime();
+        String endTime = e.getEndDateTime();
 
         eventSchedule.informUsers(name + " was just scheduled! It is being held at " + venue + " from " + startTime + " -- " + endTime + ". Check it out!");
 
@@ -65,7 +64,7 @@ class Employee extends User {
         }
         eventSchedule.dropEvent(e);
 
-        String date = e.getStartDateTime().format(DateTimeFormatter.ofPattern("d/M/yyyy"));
+        String date = e.getStartDateTime();
 		eventSchedule.informUsers(e.getName() + " held on " + date + " was cancelled. We apologize for any inconvenience.");
 
     }
@@ -75,10 +74,9 @@ class Employee extends User {
 
         e.setVenue(venue);
         e.setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
-        
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:mm z");
-        String startDateTime = e.getStartDateTime().format(format);
-        String endDateTime = e.getEndDateTime().format(format);
+
+        String startDateTime = e.getStartDateTime();
+        String endDateTime = e.getEndDateTime();
 
         eventSchedule.informUsers("Please be advised that one of our events have changed! " + e.getName() + " is now being held at " + venue + " from " + startDateTime + " -- " + endDateTime);
 
@@ -93,6 +91,7 @@ class Employee extends User {
 
     }
       
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void requestFreeTicket(Event e) throws EventUnavailableException {
 
 	    if(!e.isAvailable())

@@ -32,7 +32,7 @@ public class Driver {
         //upon doing the above, the following code will become obsolete
         String zone = "EST";
         Event e1 = new Event("Men's 200m Backstroke", "Diving", "E", "Olympic Aquatics Stadium",
-                "10", "6", "7", "0", "10", "6", "9", "15", "2016", zone,
+                "6", "10", "7", "0", "6", "10", "9", "15", "2016", zone,
                 "99.99", "1");
         ArrayList<String> sport1 = new ArrayList<String>();
         sport1.add("Diving");
@@ -57,10 +57,10 @@ public class Driver {
         e1.addParticipant(new Athlete("John Isner", "4419998888", "38", "johnisner@gmail.com",
                 "France", "M", sport2));
         Event e2 = new Event("Men's 200m Backstroke Ceremony", "", "C", "Olympic Aquatics Stadium",
-                "12", "6", "12", "0", "12", "6", "13", "0", "2016", zone,
+                "6", "12", "12", "0", "6", "12", "13", "0", "2016", zone,
                 "0", "1");
         Event e3 = new Event("Men's Floor Exercise", "Gymnastics", "E", "Rio Olympic Arena",
-                "20", "6", "10", "15", "20", "6", "13", "30", "2016", zone,
+                "6", "20", "10", "15", "6", "20", "13", "30", "2016", zone,
                 "89.99", "1");
         e3.addParticipant(new Athlete("Julian Sangillo", "2017022254", "21", "juliansangillo@gmail.com",
                 "United States", "M", sport1));
@@ -71,10 +71,10 @@ public class Driver {
         e3.addParticipant(new Athlete("Simone Biles", "3448980021", "40", "simonebiles@gmail.com",
                 "Britain", "M", sport1));
         Event e4 = new Event("Men's Floor Exercise Ceremony", "", "C", "Rio Olympic Arena",
-                "22", "6", "15", "45", "22", "6", "16", "45", "2016", zone,
+                "6", "22", "15", "45", "6", "22", "16", "45", "2016", zone,
                 "0", "1");
         Event e5 = new Event("Women's 10km Marathon Swimming", "Aquatics", "E", "Fort Copacabana",
-                "3", "7", "14", "30", "3", "7", "17", "0", "2016", zone,
+                "7", "3", "14", "30", "7", "3", "17", "0", "2016", zone,
                 "99.99", "1");
         ArrayList<String> sport3 = new ArrayList<String>();
         sport3.add("Aquatics");
@@ -97,10 +97,10 @@ public class Driver {
         e5.addParticipant(new Athlete("Sania Mirza", "8888888888", "19", "saniamirza@gmail.com",
                 "United States", "F", sport3));
         Event e6 = new Event("Women's 10km Marathon Swimming Ceremony", "", "C", "Fort Copacabana",
-                "5", "7", "12", "0", "5", "7", "13", "0", "2016", zone,
+                "7", "5", "12", "0", "7", "5", "13", "0", "2016", zone,
                 "0", "1");
         Event e7 = new Event("Women's Light (57-60kg)", "Boxing", "E", "Riocentro - Pavilion 6",
-                "16", "7", "20", "30", "16", "7", "22", "0", "2016", zone,
+                "7", "16", "20", "30", "7", "16", "22", "0", "2016", zone,
                 "59.99", "1");
         e7.addParticipant(new Athlete("Sloane Stephens", "1111111111", "20", "sloanestephens@gmail.com",
                 "France", "F", sport3));
@@ -119,10 +119,10 @@ public class Driver {
         e7.addParticipant(new Athlete("Sania Mirza", "8888888888", "19", "saniamirza@gmail.com",
                 "United States", "F", sport3));
         Event e8 = new Event("Women's Light (57-60kg) Ceremony", "", "C", "Riocentro - Pavilion 6",
-                "18", "7", "12", "0", "18", "7", "14", "0", "2016", zone,
+                "7", "18", "12", "0", "7", "18", "14", "0", "2016", zone,
                 "0", "1");
         Event e9 = new Event("Women's Team Archery", "Archery", "E", "Sambodromo",
-                "31", "7", "15", "5", "31", "7", "16", "35", "2016", zone,
+                "7", "31", "15", "5", "7", "31", "16", "35", "2016", zone,
                 "99.99", "1");
         e9.addParticipant(new Athlete("Sloane Stephens", "1111111111", "20", "sloanestephens@gmail.com",
                 "France", "F", sport3));
@@ -141,7 +141,7 @@ public class Driver {
         e9.addParticipant(new Athlete("Sania Mirza", "8888888888", "19", "saniamirza@gmail.com",
                 "United States", "F", sport3));
         Event e10 = new Event("Women's Team Archery Ceremony", "", "C", "Sambodromo",
-                "2", "8", "7", "0", "2", "8", "8", "0", "2016", zone,
+                "8", "2", "7", "0", "8", "2", "8", "0", "2016", zone,
                 "0", "1");
         //**************************************************************************************
         //**************************************************************************************

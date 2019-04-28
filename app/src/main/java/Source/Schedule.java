@@ -61,15 +61,17 @@ class Schedule {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Event conflict(Event first) {
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy H:mm z");
+
         Event second;
         int hoursApart = 1;
-        ZonedDateTime firstStartTime = first.getStartDateTime().minusHours(hoursApart);
-        ZonedDateTime firstEndTime = first.getEndDateTime().plusHours(hoursApart);
+        ZonedDateTime firstStartTime = ZonedDateTime.parse(first.getStartDateTime(), formatter).minusHours(hoursApart);
+        ZonedDateTime firstEndTime = ZonedDateTime.parse(first.getEndDateTime(), formatter).plusHours(hoursApart);
 
         for(int i = 0; i < event.size(); i++) {
             second = event.get(i);
-            ZonedDateTime secondStartTime = second.getStartDateTime();
-            ZonedDateTime secondEndTime = second.getEndDateTime();
+            ZonedDateTime secondStartTime = ZonedDateTime.parse(second.getStartDateTime(), formatter);
+            ZonedDateTime secondEndTime = ZonedDateTime.parse(second.getEndDateTime(), formatter);
             if(firstEndTime.isAfter(secondStartTime) && firstStartTime.isBefore(secondEndTime))
                 return second;
         }

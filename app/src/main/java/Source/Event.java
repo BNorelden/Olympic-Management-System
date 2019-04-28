@@ -9,21 +9,19 @@ import java.time.format.DateTimeFormatter;
 
 public class Event {
 	
-    private	String name, category, type, venue, price, numSeats;
-    private ZonedDateTime startDateTime;
-    private ZonedDateTime endDateTime;
+    private	String name, category, type, venue, startDateTime, endDateTime, price, numSeats;
     
     private ArrayList<Athlete> participant;
     
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Event(String name, String category, String type, String venue, String startDay, String startMonth, String startHr, String startMin,
-                 String endDay, String endMonth, String endHr, String endMin, String year, String zone, String price, String seats) throws InputException{
+    public Event(String name, String category, String type, String venue, String startMonth, String startDay, String startHr, String startMin,
+                 String endMonth, String endDay, String endHr, String endMin, String year, String zone, String price, String seats) throws InputException{
         
         setName(name);
         setCat(category);
         setType(type);
         setVenue(venue);
-        setDateTime(startDay, startMonth, startHr, startMin, endDay, endMonth, endHr, endMin, zone, year);
+        setDateTime(startMonth, startDay, startHr, startMin, endMonth, endDay, endHr, endMin, zone, year);
         setPrice(price);
         setSeats(seats);
 
@@ -63,18 +61,22 @@ public class Event {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setDateTime(String startDay, String startMonth, String startHr, String startMin, String endDay, String endMonth, String endHr, String endMin, String zone, String year) {
+    public void setDateTime(String startMonth, String startDay, String startHr, String startMin, String endMonth, String endDay, String endHr, String endMin, String zone, String year) {
+
+        ZonedDateTime converter;
+
+        DateTimeFormatter formatterIn = DateTimeFormatter.ofPattern("M/d/yyyy H:m z");
+        DateTimeFormatter formatterOut = DateTimeFormatter.ofPattern("M/dd/yyyy H:mm z");
 
         String dateTime;
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy H:m z");
-        
-        dateTime = startDay + "/" + startMonth + "/" + year + " " + startHr + ":" + startMin + " " + zone;
 
-        startDateTime = ZonedDateTime.parse(dateTime, format);
+        dateTime = startMonth + "/" + startDay + "/" + year + " " + startHr + ":" + startMin + " " + zone;
+        converter = ZonedDateTime.parse(dateTime, formatterIn);
+        startDateTime = converter.format(formatterOut);
 
-        dateTime = endDay + "/" + endMonth + "/" + year + " " + endHr + ":" + endMin + " " + zone;
-
-        endDateTime = ZonedDateTime.parse(dateTime, format);
+        dateTime = endMonth + "/" + endDay + "/" + year + " " + endHr + ":" + endMin + " " + zone;
+        converter = ZonedDateTime.parse(dateTime, formatterIn);
+        endDateTime = converter.format(formatterOut);
 
     }
 		
@@ -144,12 +146,12 @@ public class Event {
         return venue;
     }
     
-    public ZonedDateTime getStartDateTime() {
+    public String getStartDateTime() {
 
         return startDateTime;
     }
 
-    public ZonedDateTime getEndDateTime() {
+    public String getEndDateTime() {
         
         return endDateTime;
     }
