@@ -66,6 +66,7 @@ public class activityTwoEmp extends AppCompatActivity {
 
                         // here goes the code for filter
                         return true;
+
                     case R.id.navigation_Filter:
 
                         Intent intent2 = new Intent(activityTwoEmp.this,activityOneEmp.class);

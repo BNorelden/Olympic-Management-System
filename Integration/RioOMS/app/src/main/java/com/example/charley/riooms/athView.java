@@ -14,9 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class athView extends AppCompatActivity {
@@ -122,11 +126,12 @@ public class athView extends AppCompatActivity {
 
         String currUser = mAuth.getCurrentUser().getUid();
 
-        DocumentReference user = db.collection("ATHLETE").document(currUser);
+        DocumentReference user1 = db.collection("ATHLETE").document(currUser);
 
         CollectionReference myEvents = db.collection("EVENTS");
 
-       // String name = user.
+        //myEvents.whereEqualTo()
+
 
     }
 

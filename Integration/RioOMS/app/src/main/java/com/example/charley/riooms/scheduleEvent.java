@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -34,13 +39,16 @@ public class scheduleEvent extends AppCompatActivity {
 
     String nameS, catS,typeS,venueS,stdayS,stmonthS,sthourS,stminS,enddayS,endmonthS,endhourS,endminS,
     yearS,zoneS,priceS,seatsS;
-    @Override
 
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_event);
 
-        final CollectionReference fsref =  db.collection("Test2");
+        /*final CollectionReference fsref =  db.collection("Test2");
 
         name = findViewById(R.id.name);
         cat = findViewById(R.id.cat);
@@ -109,7 +117,7 @@ public class scheduleEvent extends AppCompatActivity {
 
                 //fsref.document(nameS).set(event,SetOptions.merge());
 
-                /***************************docSNAPSHOT
+                *//***************************docSNAPSHOT
                  fsref.whereEqualTo("startHr",sthourS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -126,7 +134,7 @@ public class scheduleEvent extends AppCompatActivity {
                 }
                 }
                 }
-                });*/
+                });*//*
 
 
                 fsref.whereLessThan("startHr",sthourS).whereGreaterThan("startHr",sthourS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -151,7 +159,7 @@ public class scheduleEvent extends AppCompatActivity {
 
             }
 
-        });
+        });*/
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_emp);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -196,6 +204,55 @@ public class scheduleEvent extends AppCompatActivity {
         menuItem.setChecked(true);
 
 
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+
+    }
+
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            switch (position){
+
+                case 0:
+                    tabSched tab1 =  new tabSched();
+                    return tab1;
+
+                case 1:
+                    tabUpdate tab2 = new tabUpdate();
+                    return tab2;
+
+                default:
+                    return null;
+
+            }
+        }
+
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 2;
+        }
     }
 
 }

@@ -75,6 +75,7 @@ public class empView extends AppCompatActivity {
 
                     // here goes the code for filter
                     return true;
+
                 case R.id.navigation_Filter:
 
                     Intent intent2 = new Intent(empView.this,activityOneEmp.class);
