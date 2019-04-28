@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/ven1101/Desktop/git_rep/Olympic-Management-System/RioOms/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
+            "outputFile": "C:\\Users\\Bilal\\Documents\\GitHub\\Olympic-Management-System\\RioOms\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/667173845d8457fce208395ba9c1aba8/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\b1c7c71ece4508937168b7852bb8814f\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/b8740ec9465e75bbf6b0bb7c32503378/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\2d9fa0b13e6b3ee14e17967c8f01ed66\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

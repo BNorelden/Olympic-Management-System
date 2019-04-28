@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/ven1101/Desktop/git_rep/Olympic-Management-System/RioOms/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hy/values-hy.xml",
+            "outputFile": "C:\\Users\\Bilal\\Documents\\GitHub\\Olympic-Management-System\\RioOms\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hy\\values-hy.xml",
             "map": [
                 {
-                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/3f4cb1e119abf6358919d322da7d27fd/res/values-hy/values.xml",
+                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\04919759b4cc7a8654c9f9059f2a3451\\res\\values-hy\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/9c273e691369f00d9610190e50ba1ef6/res/values-hy/values-hy.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "48",
-                        "startColumns": "4",
-                        "startOffsets": "5688",
-                        "endColumns": "100",
-                        "endOffsets": "5784"
-                    }
-                },
-                {
-                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/667173845d8457fce208395ba9c1aba8/res/values-hy/values-hy.xml",
+                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\b1c7c71ece4508937168b7852bb8814f\\res\\values-hy\\values-hy.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "/home/ven1101/.gradle/caches/transforms-2/files-2.1/3d3e3db48b368a27b81ae18f98f17087/res/values-hy/values.xml",
+                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\5273c262a53b60efcd83b8bd38bd0931\\res\\values-hy\\values-hy.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "48",
+                        "startColumns": "4",
+                        "startOffsets": "5688",
+                        "endColumns": "100",
+                        "endOffsets": "5784"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Bilal\\.gradle\\caches\\transforms-2\\files-2.1\\0ef4004ea5931635ca596f8dcf56df23\\res\\values-hy\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

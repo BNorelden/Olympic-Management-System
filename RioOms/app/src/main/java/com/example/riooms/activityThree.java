@@ -34,14 +34,7 @@ public class activityThree extends AppCompatActivity {
 
         */
 
-        LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        //TextView tv=new TextView(this);
-        tt = new TextView(this);
-        tt.setText("TESTING ACTIVITY 3");
-        tt.setLayoutParams(lparams);
-        //tv.setText("test");
-        linearLayout.addView(tt);
+
 
 
 
