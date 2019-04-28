@@ -2,9 +2,8 @@ package Source;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.widget.Toast;
 
-import com.example.julian.riooms.MainActivity;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -161,7 +160,9 @@ public class Driver {
         eventSchedule.addEvent(e9);
         eventSchedule.addEvent(e10);
 
-        db.collection("EVENT").document("Schedule").set(eventSchedule);
+        CollectionReference schedule = db.collection("SCHEDULE");
+        for(Event e : eventSchedule.getEvents())
+            schedule.document(e.getName()).set(e);
 
     }
 
