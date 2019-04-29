@@ -9,23 +9,23 @@ import java.time.format.DateTimeFormatter;
 
 public class Event {
 	
-    private	String name, category, type, venue, startDateTime, endDateTime, price, numSeats;
+    private	String name, category, type, venue, startDateTime, endDateTime, price, seats;
     
-    private ArrayList<Athlete> participant;
+    private ArrayList<Athlete> participants;
     
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Event(String name, String category, String type, String venue, String startMonth, String startDay, String startHr, String startMin,
                  String endMonth, String endDay, String endHr, String endMin, String year, String zone, String price, String seats) throws InputException{
         
         setName(name);
-        setCat(category);
+        setCategory(category);
         setType(type);
         setVenue(venue);
         setDateTime(startMonth, startDay, startHr, startMin, endMonth, endDay, endHr, endMin, zone, year);
         setPrice(price);
         setSeats(seats);
 
-        participant = new ArrayList<Athlete>();
+        participants = new ArrayList<Athlete>();
 
     }
 	
@@ -35,7 +35,7 @@ public class Event {
         
 	}
 	
-	public void setCat(String category) throws InputException {
+	public void setCategory(String category) throws InputException {
 
 		for(int i = 0; i < category.length(); i++) {
 			char character = category.charAt(i);
@@ -46,10 +46,10 @@ public class Event {
 
     }
 	
-    public void setType(String type) throws InputException{
+    public void setType(String type) throws InputException {
 
-        if(!type.equals("E") && type.equals("C") && type.equals("S"))
-            throw new InputException("Type must be either: competition event (E), award ceremony (C), or autograph session (S)!");
+        if(!type.equals("E") && !type.equals("C") && !type.equals("S"))
+            throw new InputException("Type must be either: competition events (E), award ceremony (C), or autograph session (S)!");
         this.type = type;
     
     }
@@ -88,42 +88,42 @@ public class Event {
 
     public void setSeats(String seats) {
 
-        this.numSeats = seats;
+        this.seats = seats;
 
     }
     
     public void incSeats() {
 
-        int num = Integer.parseInt(numSeats);
+        int num = Integer.parseInt(seats);
 
-        numSeats = Integer.toString(++num);
+        seats = Integer.toString(++num);
 
     }
 
     public void decSeats() {
         
-        int num = Integer.parseInt(numSeats);
+        int num = Integer.parseInt(seats);
 
-        numSeats = Integer.toString(--num);
+        seats = Integer.toString(--num);
 
     }
 
     public Boolean isAvailable() {
         
-        if(numSeats.equals("0"))
+        if(seats.equals("0"))
             return false;
         return true;
     }
     
     public void addParticipant(Athlete newAthlete) {
 
-        participant.add(newAthlete);
+        participants.add(newAthlete);
 
     }
         
     public void dropParticipant(Athlete oldAthlete) {
 
-        participant.remove(oldAthlete);
+        participants.remove(oldAthlete);
 
     }
         
@@ -132,7 +132,7 @@ public class Event {
         return name;
     }
         
-    public String getCat() {
+    public String getCategory() {
 
         return category;
     }
@@ -163,12 +163,12 @@ public class Event {
         
     public String getSeats() {
 
-        return numSeats;
+        return seats;
     }
     
     public ArrayList<Athlete> getParticipants() {
 
-        return participant;
+        return participants;
     }
 
 }

@@ -4,12 +4,11 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.ArrayList;
-import java.time.format.DateTimeFormatter;
 
 public class Athlete extends User {
 
 	private String country, gender;
-	private ArrayList<String> sport;
+	private ArrayList<String> sports;
 	private AthleteSchedule schedule;
     
     private EventSchedule eventSchedule;
@@ -26,9 +25,9 @@ public class Athlete extends User {
         
 	}
 
-	public void setSports(ArrayList<String> sport) {
+	public void setSports(ArrayList<String> sports) {
 		
-		this.sport = sport;
+		this.sports = sports;
 
 	}
 
@@ -62,12 +61,12 @@ public class Athlete extends User {
 
 	public ArrayList<String> getSports() {
 
-		return sport;
+		return sports;
 	}
 
-	public ArrayList<Event> checkSchedule() {
+	public AthleteSchedule getSchedule() {
 
-		return schedule.getEvents();
+		return schedule;
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.O)
@@ -121,7 +120,7 @@ public class Athlete extends User {
 			throw new EventUnavailableException(e);
 		
 		Ticket tic = new Ticket(e);
-		ticket.add(tic);
+		tickets.add(tic);
         tic.displayTicket();
         
 	}

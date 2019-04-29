@@ -1,11 +1,14 @@
 package Source;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.ArrayList;
 
 public class User implements Usable {
 
     protected String name, phoneNum, age, email;
-    protected ArrayList<Ticket> ticket;
+    protected ArrayList<Ticket> tickets;
 
     public User(String name, String phoneNum, String age, String email) throws InputException {
 
@@ -14,7 +17,7 @@ public class User implements Usable {
         setAge(age);
         setEmail(email);
 
-        ticket = new ArrayList<Ticket>();
+        tickets = new ArrayList<Ticket>();
 
     }
 
@@ -92,9 +95,10 @@ public class User implements Usable {
     @Override
     public ArrayList<Ticket> getTickets() {
 
-        return ticket;
+        return tickets;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void buyTickets(Event e) throws EventUnavailableException {
 
@@ -108,7 +112,7 @@ public class User implements Usable {
         /*Payment Activity*/
 
         Ticket tic = new Ticket(e);
-        ticket.add(tic);
+        tickets.add(tic);
         tic.displayTicket();
 
     }
@@ -116,7 +120,7 @@ public class User implements Usable {
     @Override
     public void cancelTicket(Ticket t){
 
-        ticket.remove(t);
+        tickets.remove(t);
         t.destroy();
 
     }

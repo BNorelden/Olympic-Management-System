@@ -4,7 +4,6 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.ArrayList;
-import java.time.format.DateTimeFormatter;
 
 class Employee extends User {
 
@@ -87,7 +86,7 @@ class Employee extends User {
         e.dropParticipant(oldAthlete);
         e.addParticipant(newAthlete);
 
-        eventSchedule.informUsers("Please be advised that one of our events have changed! The athlete " + oldAthlete.getName() + " is no longer participating in " + e.getName() + ". Instead, " + newAthlete.getName() + " will take their place in this event.");
+        eventSchedule.informUsers("Please be advised that one of our events have changed! The athlete " + oldAthlete.getName() + " is no longer participating in " + e.getName() + ". Instead, " + newAthlete.getName() + " will take their place in this events.");
 
     }
       
@@ -98,7 +97,7 @@ class Employee extends User {
                 throw new EventUnavailableException(e);
                 
         Ticket tic = new Ticket(e);
-        ticket.add(tic);
+        tickets.add(tic);
         tic.displayTicket();
 
     }

@@ -9,7 +9,7 @@ public class EventUnavailableException extends Exception {
     EventUnavailableException(Event e) {
 
         unavailable = e;
-        msg = "The event, " + unavailable.getName() + ", is sold out! Please try again later.";
+        msg = "The events, " + unavailable.getName() + ", is sold out! Please try again later.";
 
     }
 
