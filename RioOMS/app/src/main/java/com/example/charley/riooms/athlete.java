@@ -1,3 +1,4 @@
+/*
 package com.example.charley.riooms;
 
 import java.util.ArrayList;
@@ -154,3 +155,4 @@ public class Athlete extends User {
         
 	}
 }
+*/

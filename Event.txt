@@ -1,0 +1,121 @@
+class Event:
+	private:
+		String name
+		String category
+		char type
+		String venue
+		ZonedDateTime startDateTime
+		ZonedDateTime endDateTime
+		float price
+		int numSeats
+		ArrayList participant = new ArrayList<Athlete>()
+	public:	
+		Event(String name, String category, char type, String venue, int startDay, int startMonth, int startHr, int startMin, 
+		int endDay, int endMonth, int endHr, int endMin, int year, int zone, float price, int seats) throws InputException:
+			setName(name)
+			setCat(category)
+			setType(type)
+			setVenue(venue)
+			setStartDate(startDay, startMonth, year)
+			setStartTime(startHr, startMin, zone)
+			setEndDate(endDay, endMonth, year)
+			setEndTime(endHr, endMin, zone)
+			setPrice(price)
+			setSeats(seats)
+
+		void setName(String name) throws InputException:
+			for(int i = 0; i < name.length(); i++):
+				char character = name.charAt(i)
+				if(character != ' ' && (character < '0' || (character > '9' && character < 'A') ||
+				(character > 'Z' && character < 'a') || character > 'z')):
+					throw new InputException("Event names are not allowed to contain special characters!")
+			this.name = name
+
+		void setCat(String category) throws InputException:
+			for(int i = 0; i < category.length(); i++):
+				char character = category.charAt(i)
+				if(character != ' ' && (character < 'A' || (character > 'Z' && character < 'a') || character > 'z')):
+					throw new InputException("Categories are not allowed to contain numbers or special characters!")
+			this.category = category
+
+		void setType(char type) throws InputException:
+			if(type != 'E' && type != 'C' && type != 'S'):
+				throw new InputException("Type must be either: competition event (E), award ceremony (C), or autograph session (S)!")
+			this.type = type
+
+		void setVenue(String venue):
+			this.venue = venue
+
+		void setStartDate(int day, int month, int year):
+			String date = day + "/" + month + "/" + year
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy")
+			startDateTime.parse(date, format)
+			
+		void setStartTime(int hr, int min, String zone):
+			String time = hr + ":" + min + " " + zone
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("h:m z")
+			startDateTime.parse(time, format)
+
+		void setEndDate(int day, int month, int year):
+			String date = day + "/" + month + "/" + year
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy")
+			endDateTime.parse(date, format)
+			
+		void setEndTime(int hr, int min, String zone):
+			String time = hr + ":" + min + " " + zone
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("h:m z")
+			endDateTime.parse(time, format)
+
+		void setPrice(float price) throws InputException:
+			if(price < 0):
+				throw new InputException("Price cannot be a negative value!")
+			this.price = price
+
+		void setSeats(int seats) throws InputException:
+			if(seats < 0):
+				throw new InputException("Number of seats cannot be negative!")
+			this.numSeats = seats
+		
+		void incSeats():
+			numSeats++
+
+		void decSeats():
+			numSeats--
+
+		Boolean isAvailable():
+			if(numSeats == 0):
+				return false
+			return true
+
+		void addParticipant(Athlete a):
+				participant.add(a)
+
+		void dropParticipant(Athlete a):
+				participant.remove(a)
+
+		String getName():
+			return name
+
+		String getCat():
+			return category
+
+		char getType():
+			return type
+
+		String getVenue():
+			return venue
+
+		ZonedDateTime getStartDateTime():
+			return startDateTime
+
+		ZonedDateTime getEndDateTime():
+			return endDateTime
+
+		float getPrice():
+			return price
+
+		int getSeats():
+			return numSeats
+
+		ArrayList getParticipants():
+			return participant
