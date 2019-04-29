@@ -34,4 +34,18 @@
 
     <string name="open">Open Act</string>
 
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_Filter">Filter</string>
+
+    <string name="title_Events">Events</string>
+    <string name="title_Tickets">Tickets</string>
+    <string name="title_noTickets">There are No Tickets Available</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title_autograph">Autograph</string>
+
+    <string name="title_schedEvents">Schedule Events</string>
+    <string name="title_regAth">Register Athlete</string>
+
 </resources>

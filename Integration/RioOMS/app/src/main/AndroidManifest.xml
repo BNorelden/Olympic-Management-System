@@ -22,33 +22,40 @@
 
         </service>
 
-        <activity
-            android:name=".athleteView"
-            android:label="@string/title_activity_athlete_view"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".employeeView"
-            android:label="@string/title_activity_employee_view"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".userView"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".athView" />
+        <activity android:name=".empView" />
+        <activity android:name=".userView"/>
+        <activity android:name=".activityOneEmp"/>
+        <activity android:name=".activityTwoEmp"/>
+        <activity android:name=".activityThreeEmp"/>
+        <activity android:name=".regAth"/>
+        <activity android:name=".scheduleEvent"/>
+        <activity android:name=".scheduleAuto"/>
+        <activity android:name=".activityOneAth"/>
+        <activity android:name=".activityTwoAth"/>
+        <activity android:name=".activityThreeAth"/>
         <activity android:name=".activityOne"/>
         <activity android:name=".activityTwo"/>
         <activity android:name=".activityThree"/>
         <activity android:name=".TicketDisplay" />
-        <activity android:name=".popUpDynamic"/>
-        <activity android:name=".PurchaseTic" />
+        <activity android:name=".popUpDynamic"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity android:name=".PurchaseTic"/>
         <activity android:name=".signUp" />
         <activity android:name=".homePage" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+
+            android:resource="@drawable/ic_action_mail" />
+
     </application>
 
 </manifest>

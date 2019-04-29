@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         signupBtn.setOnClickListener(this);
         guestBtn.setOnClickListener(this);
 
+        FirebaseMessaging.getInstance().subscribeToTopic("notifications");
+
     }
 
     private void userLogin(){
@@ -80,9 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             db = FirebaseFirestore.getInstance();
 
-                            userRef = db.collection("user").document(currUser);
-                            empRef = db.collection("employee").document(currUser);
-                            athRef = db.collection("athlete").document(currUser);
+                            userRef = db.collection("USER").document(currUser);
+                            empRef = db.collection("EMPLOYEE").document(currUser);
+                            athRef = db.collection("ATHLETE").document(currUser);
 
                             userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
@@ -121,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         if(document.exists()){
 
-                                            startActivity(new Intent(getApplicationContext(), employeeView.class));
+                                            startActivity(new Intent(getApplicationContext(), empView.class));
 
                                         }
 
@@ -149,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         if(document.exists()){
 
-                                            startActivity(new Intent(getApplicationContext(), athleteView.class));
+                                            startActivity(new Intent(getApplicationContext(), athView.class));
 
                                         }
 
@@ -236,4 +239,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    //public void subscribeToTopic(View view){
+
+   //     FirebaseMessaging.getInstance().subscribeToTopic("notifications");
+
+   // }
+
 }

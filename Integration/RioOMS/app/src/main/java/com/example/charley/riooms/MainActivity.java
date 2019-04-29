@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             db = FirebaseFirestore.getInstance();
 
-                            userRef = db.collection("user").document(currUser);
-                            empRef = db.collection("employee").document(currUser);
-                            athRef = db.collection("athlete").document(currUser);
+                            userRef = db.collection("USER").document(currUser);
+                            empRef = db.collection("EMPLOYEE").document(currUser);
+                            athRef = db.collection("ATHLETE").document(currUser);
 
                             userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         if(document.exists()){
 
-                                            startActivity(new Intent(getApplicationContext(), employeeView.class));
+                                            startActivity(new Intent(getApplicationContext(), empView.class));
 
                                         }
 
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         if(document.exists()){
 
-                                            startActivity(new Intent(getApplicationContext(), athleteView.class));
+                                            startActivity(new Intent(getApplicationContext(), athView.class));
 
                                         }
 
