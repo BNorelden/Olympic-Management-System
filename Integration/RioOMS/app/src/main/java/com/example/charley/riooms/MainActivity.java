@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button loginBtn, signupBtn, guestBtn;
     String email, password;
 
+    public static int privilege;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         if(document.exists()){
 
                                             startActivity(new Intent(getApplicationContext(), userView.class));
+                                            privilege = 1;
 
                                         }
 
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         if(document.exists()){
 
                                             startActivity(new Intent(getApplicationContext(), empView.class));
+                                            privilege = 2;
 
                                         }
 
@@ -153,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         if(document.exists()){
 
                                             startActivity(new Intent(getApplicationContext(), athView.class));
+                                            privilege = 3;
 
                                         }
 

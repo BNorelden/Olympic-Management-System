@@ -80,7 +80,7 @@ public class signUp extends AppCompatActivity implements View.OnClickListener {
         //int ageNum = Integer.parseInt(age);
 
         /*Map<String, Object> com.example.charley.riooms.user = new HashMap<>();
-        //todo add support for first and last name
+        //todo add suppport for first and last name
         com.example.charley.riooms.user.put("fName", name);
         com.example.charley.riooms.user.put("email", mAuth.getUid());
         com.example.charley.riooms.user.put("phone", phoneNum);

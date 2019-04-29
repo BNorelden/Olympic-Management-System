@@ -130,6 +130,13 @@ public class userView extends AppCompatActivity {
             // do something here
 
             FirebaseAuth.getInstance().signOut();
+
+            Intent intents = new Intent(userView.this, MainActivity.class);
+            intents.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_SINGLE_TOP);//IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intents);
+
             finish();
 
         }
