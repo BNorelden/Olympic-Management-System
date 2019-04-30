@@ -135,25 +135,5 @@ public class athView extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.sign_out, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.logout) {
-            // do something here
-
-            FirebaseAuth.getInstance().signOut();
-            finish();
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
