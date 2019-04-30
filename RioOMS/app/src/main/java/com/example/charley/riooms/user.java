@@ -1,4 +1,3 @@
-/*
 package com.example.charley.riooms;
 
 import java.util.ArrayList;
