@@ -30,7 +30,6 @@ import java.util.Map;
 
 import static android.support.constraint.Constraints.TAG;
 
-import static com.example.charley.riooms.MainActivity.privilege;
 import static com.example.charley.riooms.eList.swapS;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
@@ -43,9 +42,6 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
     String holds = swapS;
     DocumentReference fsref;
     EditText etext;
-
-    final String specialDiscount = "00.00";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,24 +104,7 @@ public class popUpDynamic extends Activity implements View.OnClickListener {
                     data.append("\nStart Time: ").append(startHr +":"+ startMin +" "+ zone);
                     data.append("\nEnd Date: ").append(endMonth+"/"+endDay+"/"+year);
                     data.append("\nEnd Time: ").append(endHr +":"+ endMin +" "+ zone);
-
-
-                    //data.append("\nPrice: ").append(price);                                               // Works beautifully but haven't tested it dynamically
-                    //Part of code that fixes price depending on user
-                    if (privilege ==1){                                             /*******************/
-                        data.append("\nPrice: ").append(price); }
-                    else if (privilege ==2){
-                        data.append("\nPrice: ").append(specialDiscount);
-                    }
-                    else if (privilege ==3){
-                        data.append("\nPrice: ").append(specialDiscount);
-                    }
-                    else{
-                        data.append("\nPrice: ").append(price);
-                    }                                                              /*******************/
-
-
-
+                    data.append("\nPrice: ").append(price);                                               // Works beautifully but haven't tested it dynamically
                     data.append("\nseats: ").append(seats);
 
 
