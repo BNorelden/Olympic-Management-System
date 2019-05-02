@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button loginBtn, signupBtn, guestBtn;
     String email, password;
 
+    public static int privilege;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         if(document.exists()){
 
                                             startActivity(new Intent(getApplicationContext(), userView.class));
+                                            privilege = 1;
 
                                         }
 
@@ -114,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 }
                             });
 
+                            //todo make sure it works
                             empRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -124,7 +128,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         if(document.exists()){
 
+                                            empRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                                    if(task.isSuccessful()){
+
+                                                        DocumentSnapshot SECdoc= task.getResult();
+
+                                                        if(SECdoc.get("name").equals("CSO")){
+
+                                                            FirebaseMessaging.getInstance().subscribeToTopic("security");
+                                                            //FirebaseMessaging.getInstance().unsubscribeFromTopic("security");
+                                                        }
+
+                                                    }
+                                                }
+                                            });
+
                                             startActivity(new Intent(getApplicationContext(), empView.class));
+                                            privilege = 2;
 
                                         }
 
@@ -153,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         if(document.exists()){
 
                                             startActivity(new Intent(getApplicationContext(), athView.class));
+                                            privilege = 3;
 
                                         }
 
