@@ -4,9 +4,9 @@
 
 The team was assigned to design the management system of a mock Summer Olympic Games, and the team decided to design a mobile application of the project since it seemed the best fit for such an event.. here are some images below of the application as far as the team has reached.
 
-<b>Frontend Application:</b> Android Studio
-
-<b>Backend Application:</b> Firebase
+<b>IDE:</b> Android Studio
+<b>Language:</b> Java
+<b>Database:</b> Firebase
 
 ![Picture1](https://user-images.githubusercontent.com/26119055/61599195-9adc2780-abf4-11e9-82d7-144f8a2f5901.png)
 ![Picture2](https://user-images.githubusercontent.com/26119055/61599207-bfd09a80-abf4-11e9-8cd4-9e1cc352b87f.png)
